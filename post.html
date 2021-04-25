@@ -5,28 +5,13 @@
 	<head>
 		<!-- Required meta tag -->
 		<meta charset="UTF-8" />
-		<meta
-			name="description"
-			content="Blog Layout,blog post page,this is my block website"
-		/>
-		<meta
-			name="keywords"
-			content="news,  Blog Post, Saddam Arbaa"
-			html
-			css
-			javscript
-			blog
-			webside
-		/>
+		<meta name="description" content="Blog Layout" />
+		<meta name="keywords" content="news,  Blog Post" />
 		<meta name="author" content="Saddam Arbaa" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
 		<!-- First Mobile Viewport  -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-		<!-- open all the links in a new tab -->
-		<base target="_blank" />
 
 		<!-- Connect to the Font Awesome -->
 		<link
@@ -40,33 +25,41 @@
 			crossorigin="anonymous"
 		/>
 
-		<!-- the Main CSS File -->
+		<!-- the  CSS File -->
 		<link rel="stylesheet" href="./styles/style.css" />
-
-		<!-- sessions.Js file -->
-		<!-- load this one directly -->
-		<script src="./js/sessions.js"></script>
-
-		<!-- Js file -->
-		<script src="./js/index.js" defer></script>
+		<link rel="stylesheet" href="./styles/post.css" />
 
 		<!--  Start title -->
-		<title>blog post page</title>
+		<title>post page</title>
+
+		<!-- Js file -->
+		<script src="./js/post.js" defer></script>
 	</head>
 	<body class="page">
 		<!-- Start The Header Section -->
 		<header class="header page__header">
-			<div class="profile__image"></div>
+			<!-- <div class="profile__image"></div>
 			<div class="profile__name">Saddam Arbaa</div>
-			<div class="profile__subtext">Welcome to my blog!</div>
+			<div class="profile__subtext">Welcome to my blog!</div> -->
 		</header>
-		<span class="sign-in-login" id="removeTokenButton" onclick="LogOut()">
-			<i class="fas fa-sign-in-alt"></i>
-			Sign Out
-		</span>
+
 		<!-- Start The Main Section -->
-		<main class="main page__main" id="page__main">
-			<div class="page__main__container" id="blogPostContent"></div>
+		<main class="main page__main">
+			<div class="page__main__container">
+				<div class="nav navigation">
+					<a href="index.html" class="navigation__button">Back</a>
+				</div>
+				<div class="main__container--post__content">
+					<!-- individual blog_post_date -->
+					<div id="individual__post--date"></div>
+					<!-- individual blog_post_header -->
+					<div id="individual__post--title"></div>
+					<!-- individual blog_post_content -->
+					<div id="individual__post--content">
+						<p></p>
+					</div>
+				</div>
+			</div>
 		</main>
 
 		<!-- Start the Footer Section -->
@@ -78,6 +71,7 @@
 					<i class="fa fa-heart"> </i> By
 					<a href="#" target="_blank"> Saddam Inc</a> &copy; 2021
 				</div>
+
 				<!-- social Media -->
 				<div class="footer__socialMedia">
 					<a class="facebook" href="https://www.facebook.com/saddam.arbaa">
@@ -99,19 +93,10 @@
 						class="linkedin"
 						href="https://www.linkedin.com/in/saddamarbaa/"
 					>
-						<i class="fab fa-linkedin-in fa-2x"> </i
-					></a>
+						<i class="fab fa-linkedin-in fa-2x"> </i>
+					</a>
 				</div>
 			</div>
 		</footer>
-
-		<!-- add new post Icon -->
-		<div class="add-post">
-			<a href="new-post.html">
-				<div class="nav-button new-post-button">
-					<i class="fas fa-plus-circle fa-2x"></i>
-				</div>
-			</a>
-		</div>
 	</body>
 </html>

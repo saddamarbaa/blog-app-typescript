@@ -5,28 +5,13 @@
 	<head>
 		<!-- Required meta tag -->
 		<meta charset="UTF-8" />
-		<meta
-			name="description"
-			content="Blog Layout,blog post page,this is my block website"
-		/>
-		<meta
-			name="keywords"
-			content="news,  Blog Post, Saddam Arbaa"
-			html
-			css
-			javscript
-			blog
-			webside
-		/>
+		<meta name="description" content="Blog Layout" />
+		<meta name="keywords" content="news,  Blog Post" />
 		<meta name="author" content="Saddam Arbaa" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
 		<!-- First Mobile Viewport  -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-		<!-- open all the links in a new tab -->
-		<base target="_blank" />
 
 		<!-- Connect to the Font Awesome -->
 		<link
@@ -40,33 +25,82 @@
 			crossorigin="anonymous"
 		/>
 
-		<!-- the Main CSS File -->
+		<!-- the CSS File -->
 		<link rel="stylesheet" href="./styles/style.css" />
-
-		<!-- sessions.Js file -->
-		<!-- load this one directly -->
-		<script src="./js/sessions.js"></script>
+		<link rel="stylesheet" href="./styles/post.css" />
+		<link rel="stylesheet" href="./styles/new-post.css" />
 
 		<!-- Js file -->
-		<script src="./js/index.js" defer></script>
+		<script src="./js/new-post.js" defer></script>
 
 		<!--  Start title -->
-		<title>blog post page</title>
+		<title>New Post</title>
 	</head>
 	<body class="page">
 		<!-- Start The Header Section -->
 		<header class="header page__header">
 			<div class="profile__image"></div>
-			<div class="profile__name">Saddam Arbaa</div>
-			<div class="profile__subtext">Welcome to my blog!</div>
+			<div class="profile__name">New Post</div>
+			<div class="profile__subtext">Let's add a new blog post!</div>
 		</header>
-		<span class="sign-in-login" id="removeTokenButton" onclick="LogOut()">
-			<i class="fas fa-sign-in-alt"></i>
-			Sign Out
-		</span>
+
 		<!-- Start The Main Section -->
-		<main class="main page__main" id="page__main">
-			<div class="page__main__container" id="blogPostContent"></div>
+		<main class="main page__main">
+			<div class="page__main__container">
+				<div class="nav navigation">
+					<a href="index.html" class="navigation__button">Back</a>
+				</div>
+
+				<div class="form-container">
+					<form
+						id="newPostForm"
+						action="myFormAction"
+						method="post"
+						autocomplete="of"
+					>
+						<div class="post-title-container">
+							<label for="form-post-title"></label>
+							<input
+								type="text"
+								id="form-post-title"
+								name="post-title"
+								placeholder="Post Title"
+								required
+							/>
+						</div>
+						<div class="post-content-container">
+							<textarea
+								name="post-content"
+								id="form-post-content"
+								placeholder="post-content"
+								required
+							></textarea>
+						</div>
+
+						<div class="post-image-Container">
+							<label for="form-post-image">Choose Image</label>
+							<input
+								type="file"
+								name="post-image"
+								id="form-post-image"
+								accept="image/*"
+								required
+							/>
+						</div>
+
+						<div class="post-button-container">
+							<button type="submit"
+								id="form-post-submit"
+							
+								onclick="submitNewPost()"
+							>
+								Submit
+							</button>
+							<button type="reset" id="form-post-rest">Rest</button>
+						</div>
+					</form>
+				</div>
+			</div>
 		</main>
 
 		<!-- Start the Footer Section -->
@@ -104,14 +138,5 @@
 				</div>
 			</div>
 		</footer>
-
-		<!-- add new post Icon -->
-		<div class="add-post">
-			<a href="new-post.html">
-				<div class="nav-button new-post-button">
-					<i class="fas fa-plus-circle fa-2x"></i>
-				</div>
-			</a>
-		</div>
 	</body>
 </html>

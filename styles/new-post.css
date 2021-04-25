@@ -1,0 +1,56 @@
+/** @format */
+
+/*======  Overwrite Header Background  ======*/
+
+.page__header .profile__image {
+	background: none;
+}
+
+/*======  Start form  ======*/
+
+.form-container {
+	margin-bottom: 1em;
+	font-size: 19px;
+}
+
+.form-container .post-title-container,
+.post-content-container,
+.post-button-container {
+	margin: 1.2em 0;
+}
+
+.form-container .post-image-Container {
+	margin: 0.5em 0;
+}
+
+.form-container input#form-post-title,
+textarea#form-post-content {
+	border: 1px solid #ced4da;
+	padding: 8px;
+	border-radius: 5px;
+	color: #495057;
+}
+
+.form-container #form-post-content {
+	width: 100%;
+	min-width: 100%;
+	max-width: 100%;
+	min-height: 300px;
+}
+
+.form-container #form-post-submit,
+#form-post-rest {
+	color: var(--drak3eGrey);
+	border: 1px solid var(--drak3eGrey);
+	padding: 10px 16px;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: all 0.2s ease-in-out;
+	margin-right: 1rem;
+}
+
+.form-container #form-post-submit:hover,
+#form-post-rest:hover {
+	color: var(--deepGreen);
+	border: 2px solid var(--deepGreen);
+}

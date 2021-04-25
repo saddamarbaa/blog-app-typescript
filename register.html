@@ -5,19 +5,8 @@
 	<head>
 		<!-- Required meta tag -->
 		<meta charset="UTF-8" />
-		<meta
-			name="description"
-			content="Blog Layout,blog post page,this is my block website"
-		/>
-		<meta
-			name="keywords"
-			content="news,  Blog Post, Saddam Arbaa"
-			html
-			css
-			javscript
-			blog
-			webside
-		/>
+		<meta name="description" content="Blog Layout" />
+		<meta name="keywords" content="news,  Blog Post" />
 		<meta name="author" content="Saddam Arbaa" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
@@ -26,7 +15,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 		<!-- open all the links in a new tab -->
-		<base target="_blank" />
+		<!-- <base target="_blank" /> -->
 
 		<!-- Connect to the Font Awesome -->
 		<link
@@ -43,31 +32,79 @@
 		<!-- the Main CSS File -->
 		<link rel="stylesheet" href="./styles/style.css" />
 
-		<!-- sessions.Js file -->
+		<!-- login css file  -->
+		<link rel="stylesheet" href="./styles/login.css" />
+
+		<!-- register css file  -->
+		<link rel="stylesheet" href="./styles/register.css" />
 		<!-- load this one directly -->
 		<script src="./js/sessions.js"></script>
 
-		<!-- Js file -->
-		<script src="./js/index.js" defer></script>
+		<!-- Main Js file  -->
+		<script src="./js/register.js" defer></script>
 
-		<!--  Start title -->
-		<title>blog post page</title>
+		<!-- title -->
+		<title>Register Page</title>
 	</head>
-	<body class="page">
-		<!-- Start The Header Section -->
-		<header class="header page__header">
-			<div class="profile__image"></div>
-			<div class="profile__name">Saddam Arbaa</div>
-			<div class="profile__subtext">Welcome to my blog!</div>
-		</header>
-		<span class="sign-in-login" id="removeTokenButton" onclick="LogOut()">
-			<i class="fas fa-sign-in-alt"></i>
-			Sign Out
-		</span>
-		<!-- Start The Main Section -->
-		<main class="main page__main" id="page__main">
-			<div class="page__main__container" id="blogPostContent"></div>
-		</main>
+	<body>
+		<div class="login">
+			<div class="container">
+				<div class="login-wraper register-wraper">
+					<form
+						id="registerForm"
+						class="login-inner-wraper"
+						name="loginform"
+						autocomplete="of"
+					>
+						<div><h2>Register</h2></div>
+						<div class="user-name">
+							<label for="fname"></label>
+							<input
+								type="text"
+								id="fname"
+								name="firstName"
+								placeholder="First Name:"
+								required
+							/>
+						</div>
+						<div class="user-name">
+							<label for="lname"></label>
+							<input
+								type="text"
+								id="lname"
+								name="lastName"
+								placeholder="Last Name:"
+								required
+							/>
+						</div>
+						<div class="user-email">
+							<label for="email"></label>
+							<input
+								type="email"
+								id="email"
+								name="email"
+								placeholder="Email:"
+								required
+							/>
+						</div>
+						<div class="user-password">
+							<label for="password"></label>
+							<input
+								type="password"
+								placeholder="Password:"
+								id="password"
+								name="password"
+								required
+							/>
+						</div>
+						<div class="buttons">
+							<input type="submit" value="Register" />
+							<input type="reset" value="Reset" />
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
 
 		<!-- Start the Footer Section -->
 		<footer class="footer page__footer">
@@ -104,14 +141,5 @@
 				</div>
 			</div>
 		</footer>
-
-		<!-- add new post Icon -->
-		<div class="add-post">
-			<a href="new-post.html">
-				<div class="nav-button new-post-button">
-					<i class="fas fa-plus-circle fa-2x"></i>
-				</div>
-			</a>
-		</div>
 	</body>
 </html>
