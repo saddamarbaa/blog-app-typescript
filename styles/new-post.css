@@ -36,6 +36,7 @@ textarea#form-post-content {
 	min-width: 100%;
 	max-width: 100%;
 	min-height: 300px;
+	font-size: 19px;
 }
 
 .form-container #form-post-submit,
@@ -47,6 +48,10 @@ textarea#form-post-content {
 	cursor: pointer;
 	transition: all 0.2s ease-in-out;
 	margin-right: 1rem;
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	-ms-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
 }
 
 .form-container #form-post-submit:hover,
