@@ -1,8 +1,11 @@
 /** @format */
 
-// Selectors
-const API_URL = "http://localhost:3000/api/addPost";
+// The API URL
+const API_URL = "http://localhost:3000/api/posts";
 const newPostForm = document.getElementById("newPostForm");
+
+// Bearer Token
+const Bearer = "Bearer " + localStorage.getItem("token");
 
 // EventListeners
 newPostForm.addEventListener("submit", (event) => {
@@ -17,7 +20,7 @@ newPostForm.addEventListener("submit", (event) => {
 	const title = document.getElementById("form-post-title").value;
 	const content = document.getElementById("form-post-content").value;
 	const fileInputElement = document.getElementById("form-post-image");
-	formData.append("post_image", fileInputElement.files[0]);
+	formData.append("postImage", fileInputElement.files[0]);
 	formData.append("title", title);
 	formData.append("content", content);
 
@@ -31,6 +34,9 @@ const submitNewPost = (formData) => {
 	fetch(API_URL, {
 		method: "POST",
 		body: formData,
+		headers: {
+			Authorization: Bearer,
+		},
 	})
 		.then((response) => {
 			if (response.ok) {
@@ -41,12 +47,7 @@ const submitNewPost = (formData) => {
 			}
 		})
 		.then((data) => {
-			// Redirect the user to home page
-			setTimeout(() => {
-				window.location.replace("index.html");
-			}, 1000);
+			location.href = "/login.html";
 		})
-		.catch((error) => {
-			console.log("Fetch Error :-S", error);
-		});
+		.catch((error) => {});
 };

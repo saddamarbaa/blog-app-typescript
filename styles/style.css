@@ -120,7 +120,6 @@ a#individualPost {
 
 .page__main .main__container--post {
 	border: 1px solid #eaecee;
-	border-radius: 8px;
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: column-reverse;
@@ -128,10 +127,11 @@ a#individualPost {
 	transition: all 0.25s ease;
 	cursor: pointer;
 	margin-bottom: var(--margin-bottom);
-	-webkit-transition: all 0.25s ease;
-	-moz-transition: all 0.25s ease;
-	-ms-transition: all 0.25s ease;
-	-o-transition: all 0.25s ease;
+	-webkit-transition: var(--margin-bottom);
+	-moz-transition: var(--margin-bottom);
+	-ms-transition: var(--margin-bottom);
+	-o-transition: var(--margin-bottom);
+	border-radius: 8px;
 	-webkit-border-radius: 8px;
 	-moz-border-radius: 8px;
 	-ms-border-radius: 8px;
@@ -262,6 +262,10 @@ a#individualPost {
 	-moz-border-radius: var(--space50);
 	-ms-border-radius: var(--space50);
 	-o-border-radius: var(--space50);
+	-webkit-transition: all 0.25s ease;
+	-moz-transition: all 0.25s ease;
+	-ms-transition: all 0.25s ease;
+	-o-transition: all 0.25s ease;
 }
 
 .page .add-post:hover {

@@ -2,7 +2,9 @@
 
 // Selecters
 const loginForm = document.getElementById("loginForm");
-// console.log(loginForm);
+
+// Bearer Token
+const Bearer = "Bearer " + localStorage.getItem("token");
 
 // The API URL
 const API_URL = "http://localhost:3000";
@@ -30,7 +32,7 @@ loginForm.addEventListener("submit", (event) => {
 
 const loginfetch = (payload) => {
 	// POST request using fetch()
-	fetch(API_URL + "/api/login", {
+	fetch(API_URL + "/api/users/login", {
 		/**
 		 * The default method for a request with fetch is GET,
 		 * so we must tell it to use the POST HTTP method.
@@ -44,6 +46,7 @@ const loginfetch = (payload) => {
 		headers: {
 			"Content-Type": "application/json",
 			Accept: "application/json",
+			Authorization: Bearer,
 		},
 
 		// The body of our POST request is the JSON string that we created above.
@@ -61,7 +64,6 @@ const loginfetch = (payload) => {
 		.then((data) => {
 			// Displaying results to console
 			console.log(data);
-			console.log(data.token);
 
 			// save the token in the localStorage
 			localStorage.setItem("token", data.token);

@@ -57,3 +57,7 @@
 	padding-left: 16px;
 	padding-right: 16px;
 }
+
+#delete-post-container {
+	margin: 2rem 0 !important;
+}

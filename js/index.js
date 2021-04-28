@@ -1,7 +1,7 @@
 /** @format */
 
-const API_URL = "http://localhost:3000/api/posts/";
-const API_BASE_URL = "http://localhost:3000";
+let API_BASE_URL = "http://localhost:3000";
+const Bearer = "Bearer " + localStorage.getItem("token");
 
 // Call function whe the page is loaded
 window.onload = () => {
@@ -11,8 +11,22 @@ window.onload = () => {
 // function to get the posts
 const getPosts = () => {
 	// GET request using fetch()
-	fetch(API_URL, {
+	fetch(API_BASE_URL + "/api/posts", {
+		/**
+		 * The default method for a request with fetch is GET,
+		 * so we must tell it to use the POST HTTP method.
+		 */
 		method: "GET",
+		/**
+		 * These headers will be added to the request and tell
+		 * the API that the request body is JSON and that we can
+		 * accept JSON responses.
+		 */
+		headers: {
+			"Content-Type": "application/json",
+			Accept: "application/json",
+			Authorization: Bearer,
+		},
 	})
 		.then((response) => {
 			if (response.ok) {
@@ -23,7 +37,8 @@ const getPosts = () => {
 			}
 		})
 		.then((data) => {
-			buildPosts(data);
+			// console.log(data.result.posts);
+			buildPosts(data.result.posts);
 		})
 		.catch((error) => {
 			console.log("Fetch Error :-S", error);
@@ -62,7 +77,8 @@ const buildPosts = (posts) => {
 								class="post--text--readMore"
 								style=
 								"color: '#004186';
-								text-decoration: underline"
+								text-decoration: underline;
+								display: none"
 								>
 								Continue reading ...
 								</span>
@@ -72,7 +88,6 @@ const buildPosts = (posts) => {
 		`;
 	});
 };
-
 
 // Clear Local Storage
 const deleteTokenFromlocalStorage = document.getElementById(

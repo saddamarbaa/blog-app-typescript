@@ -3,6 +3,9 @@
 const API_URL = "http://localhost:3000/api/posts/";
 const API_BASE_URL = "http://localhost:3000";
 
+// Bearer Token
+const Bearer = "Bearer " + localStorage.getItem("token");
+
 // Call function whe the page is loaded
 window.onload = () => {
 	getPost();
@@ -22,6 +25,11 @@ const getPost = () => {
 	// GET request using fetch()
 	fetch(fetchUrl, {
 		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+			Accept: "application/json",
+			Authorization: Bearer,
+		},
 	})
 		.then((response) => {
 			if (response.ok) {
@@ -32,9 +40,43 @@ const getPost = () => {
 			}
 		})
 		.then((data) => {
-			buildPost(data.foundPost);
+			buildPost(data.result);
 		})
 		.catch((error) => {
+			console.log("Fetch Error :-S", error);
+		});
+};
+
+//  function to delete individual post based on it Id
+const deletePost = () => {
+	const postId = getPostIdParam();
+	const fetchUrl = `${API_URL}${postId}`;
+
+	// GET request using fetch()
+	fetch(fetchUrl, {
+		method: "DELETE",
+		headers: {
+			"Content-Type": "application/json",
+			Accept: "application/json",
+			Authorization: Bearer,
+		},
+	})
+		.then((response) => {
+			if (response.ok) {
+				return response.json();
+			} else {
+				// throw new Error(response.statusText);
+				throw new Error("Something went wrong");
+			}
+		})
+		.then((data) => {
+			// delete the data then the  redirect user to the home page
+			location.href = "/login.html";
+		})
+		.catch((error) => {
+			alert("You Are Unthorized To Delete This Post");
+			localStorage.removeItem("token");
+			location.href = "/login.html";
 			console.log("Fetch Error :-S", error);
 		});
 };
@@ -55,4 +97,9 @@ const buildPost = (post) => {
 	).innerHTML = `Published on: ${postDtae}`;
 	document.querySelector("#individual__post--title").innerHTML = title;
 	document.querySelector("#individual__post--content >p").innerHTML = content;
+
+	const deletePostButton = document.getElementById("individual__post-delete");
+	const deletePostContainer = document.getElementById("delete-post-container");
+	deletePostContainer.classList = "navigation";
+	deletePostButton.innerHTML = "Delete";
 };

@@ -7,6 +7,9 @@ const API_URL = "http://localhost:3000";
 
 const registerForm = document.getElementById("registerForm");
 
+// Bearer Token
+const Bearer = "Bearer " + localStorage.getItem("token");
+
 /**
  * Event handler for a form  on submit event.
  * @param {SubmitEvent} event
@@ -33,7 +36,7 @@ registerForm.addEventListener("submit", (event) => {
 
 const registerUser = (payload) => {
 	// POST request using fetch()
-	fetch(API_URL + "/api/register", {
+	fetch(API_URL + "/api/users/signup", {
 		/**
 		 * The default method for a request with fetch is GET,
 		 * so we must tell it to use the POST HTTP method.
@@ -47,6 +50,7 @@ const registerUser = (payload) => {
 		headers: {
 			"Content-Type": "application/json",
 			Accept: "application/json",
+			Authorization: Bearer,
 		},
 
 		// The body of our POST request is the JSON string that we created above.
