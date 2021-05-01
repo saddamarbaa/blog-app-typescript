@@ -5,7 +5,19 @@
 Node.js, Express, and MongoDB, JSON, Web Token (JWT) Authentication, Mongoose, Middleware Authentication with complete user authentication
 
 
-## <a href="https://github.com/saddamarbaa/my-blog-api">link to the My Blog API REPO </a>
+##  <a href="https://saddamarbaa-blog.netlify.app/">LIVE DEMO</a>
+
+
+##  <a href="https://github.com/saddamarbaa/blog-api">SEE Netflix Clone API REPO</a>
+ 
+ 
+ ## <a href="https://blog-post-api-sadam.herokuapp.com">LIVE API</a>
+
+
+##   Testing Email:      testverstion@gmail.com
+##   Testing Password:    12345test
+
+
 
 ### My Blog Software Requirements
 https://docs.google.com/document/d/1lZvacY90Yo19QcnJxRJyy1AAZkTi0Vi5qXHTtptqAiU/edit#heading=h.o5cllxjlz2l1
