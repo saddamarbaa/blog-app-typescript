@@ -7,7 +7,11 @@ const loginForm = document.getElementById("loginForm");
 const Bearer = "Bearer " + localStorage.getItem("token");
 
 // The API URL
-const API_URL = "http://localhost:3000";
+let API_URL = "http://localhost:3000";
+
+if (location.href.indexOf("netlify") != -1) {
+	API_URL = "https://blog-post-api-sadam.herokuapp.com";
+}
 
 /**
  * Event handler for a form  on submit event.

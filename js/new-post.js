@@ -1,8 +1,13 @@
 /** @format */
 
-// The API URL
-const API_URL = "http://localhost:3000/api/posts";
 const newPostForm = document.getElementById("newPostForm");
+
+// The API URL
+let API_URL = "http://localhost:3000";
+
+if (location.href.indexOf("netlify") != -1) {
+	API_URL = "https://blog-post-api-sadam.herokuapp.com";
+}
 
 // Bearer Token
 const Bearer = "Bearer " + localStorage.getItem("token");
@@ -31,7 +36,7 @@ newPostForm.addEventListener("submit", (event) => {
 // Functions
 const submitNewPost = (formData) => {
 	// POST request using fetch()
-	fetch(API_URL, {
+	fetch(API_URL + "/api/posts", {
 		method: "POST",
 		body: formData,
 		headers: {

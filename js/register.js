@@ -3,7 +3,11 @@
 // Selectors
 
 // The API URL
-const API_URL = "http://localhost:3000";
+let API_URL = "http://localhost:3000";
+
+if (location.href.indexOf("netlify") != -1) {
+	API_URL = "https://blog-post-api-sadam.herokuapp.com";
+}
 
 const registerForm = document.getElementById("registerForm");
 

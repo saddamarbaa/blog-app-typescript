@@ -1,7 +1,11 @@
 /** @format */
 
-const API_URL = "http://localhost:3000/api/posts/";
-const API_BASE_URL = "http://localhost:3000";
+// The API URL
+let API_URL = "http://localhost:3000";
+
+if (location.href.indexOf("netlify") != -1) {
+	API_URL = "https://blog-post-api-sadam.herokuapp.com";
+}
 
 // Bearer Token
 const Bearer = "Bearer " + localStorage.getItem("token");
@@ -20,7 +24,7 @@ const getPostIdParam = () => {
 //  function to get individual post based on it Id
 const getPost = () => {
 	const postId = getPostIdParam();
-	const fetchUrl = `${API_URL}${postId}`;
+	const fetchUrl = `${API_URL}/api/posts/${postId}`;
 
 	// GET request using fetch()
 	fetch(fetchUrl, {
@@ -50,7 +54,7 @@ const getPost = () => {
 //  function to delete individual post based on it Id
 const deletePost = () => {
 	const postId = getPostIdParam();
-	const fetchUrl = `${API_URL}${postId}`;
+	const fetchUrl = `${API_URL}/api/posts/${postId}`;
 
 	// GET request using fetch()
 	fetch(fetchUrl, {
@@ -87,7 +91,7 @@ const deletePost = () => {
  */
 const buildPost = (post) => {
 	const { id, title, content, post_image, added_date } = post;
-	let image = `${API_BASE_URL}/static/${post_image}`;
+	let image = `${API_URL}/static/${post_image}`;
 	const postDtae = new Date(parseInt(added_date)).toDateString();
 
 	const pageHeader = document.querySelector(".page__header");

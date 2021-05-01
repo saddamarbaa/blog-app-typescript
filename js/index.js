@@ -1,7 +1,12 @@
 /** @format */
 
-let API_BASE_URL = "http://localhost:3000";
 const Bearer = "Bearer " + localStorage.getItem("token");
+
+let API_BASE_URL = "http://localhost:3000";
+
+if (location.href.indexOf("netlify") != -1) {
+	API_BASE_URL = "https://blog-post-api-sadam.herokuapp.com";
+}
 
 // Call function whe the page is loaded
 window.onload = () => {
