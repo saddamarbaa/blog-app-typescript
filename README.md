@@ -8,7 +8,7 @@ Node.js, Express, and MongoDB, JSON, Web Token (JWT) Authentication, Mongoose, M
 ##  <a href="https://saddamarbaa-blog.netlify.app/">LIVE DEMO</a>
 
 
-##  <a href="https://github.com/saddamarbaa/blog-api">SEE Netflix Clone API REPO</a>
+##  <a href="https://github.com/saddamarbaa/blog-api">SEE MY BLOG API REPO</a>
  
  
  ## <a href="https://blog-post-api-sadam.herokuapp.com">LIVE API</a>
