@@ -55,13 +55,19 @@ https://app.diagrams.net/#G1Wo8rd6DVJUyCwp7aC6kLpvMkBM3Mgh8l
 
 ## responsive on large screens(Home Page)
 
+![image](https://user-images.githubusercontent.com/51326421/117005056-01baca00-ad11-11eb-919d-37701ad65731.png)
+
+
+
+## responsive on mobile and tablet screens
 ![image](https://user-images.githubusercontent.com/51326421/117004584-6aee0d80-ad10-11eb-80c9-2fdffdbd995a.png)
 
 
 
 ## (post page)
 
-![image](https://user-images.githubusercontent.com/51326421/111890083-ed4c9780-8a18-11eb-8a38-f4c52aa98514.png)
+![image](https://user-images.githubusercontent.com/51326421/117005580-9e7d6780-ad11-11eb-90e4-864b658276d3.png)
+
 
 
 
