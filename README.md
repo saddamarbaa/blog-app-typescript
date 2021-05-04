@@ -71,7 +71,8 @@ https://app.diagrams.net/#G1Wo8rd6DVJUyCwp7aC6kLpvMkBM3Mgh8l
 
 ## responsive on small mobile screens (Home Page)
 
-![image](https://user-images.githubusercontent.com/51326421/111890048-a199ee00-8a18-11eb-9473-4ad3854f1516.png)
+![image](https://user-images.githubusercontent.com/51326421/117004176-fc10b480-ad0f-11eb-8d8c-172ae235a448.png)
+
 
 
 ## (post page)
