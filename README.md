@@ -46,12 +46,6 @@ https://app.diagrams.net/#G1DYvf-0FWMjC2nDzFbvAgbJ03Zg8DLfRZ
 https://app.diagrams.net/#G1Wo8rd6DVJUyCwp7aC6kLpvMkBM3Mgh8l
 
 
-### <a href="">LIVE DEMO #TODO</a>
-
- 
-### <a href="https://www.loom.com/share/23484b8752184488857fe986326fffea">LIVE DEMO Vedio #TODO</a>
- 
- 
 
 ## responsive on large screens(Home Page)
 
@@ -71,30 +65,7 @@ https://app.diagrams.net/#G1Wo8rd6DVJUyCwp7aC6kLpvMkBM3Mgh8l
 
 
 
-## (new post page)
 
-![image](https://user-images.githubusercontent.com/51326421/111890191-c17de180-8a19-11eb-9ddf-08f49166a7ef.png)
-
-
-## responsive on small mobile screens (Home Page)
-
-![image](https://user-images.githubusercontent.com/51326421/117004176-fc10b480-ad0f-11eb-8d8c-172ae235a448.png)
-
-
-
-## (post page)
-
-![image](https://user-images.githubusercontent.com/51326421/111890141-53391f00-8a19-11eb-821d-a83a60b23b6c.png)
-
-
-
-## (new post page)
-
-![image](https://user-images.githubusercontent.com/51326421/111890234-233e4b80-8a1a-11eb-987f-716c9aebee8d.png)
-
-
-## TODO
-the project is on progress 
 
 
 
