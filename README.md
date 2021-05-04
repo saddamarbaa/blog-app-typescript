@@ -64,6 +64,21 @@ https://app.diagrams.net/#G1Wo8rd6DVJUyCwp7aC6kLpvMkBM3Mgh8l
 
 
 
+## (Login Page)
+
+![image](https://user-images.githubusercontent.com/51326421/117006629-df29b080-ad12-11eb-9999-504d042cd81d.png)
+
+
+
+
+
+## (post page)
+
+![image](https://user-images.githubusercontent.com/51326421/117006719-f9fc2500-ad12-11eb-8746-bf5cbb8aec14.png)
+
+
+
+
 
 
 
