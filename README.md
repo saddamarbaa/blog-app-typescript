@@ -55,7 +55,8 @@ https://app.diagrams.net/#G1Wo8rd6DVJUyCwp7aC6kLpvMkBM3Mgh8l
 
 ## responsive on large screens(Home Page)
 
-![image](https://user-images.githubusercontent.com/51326421/111890002-23d5e280-8a18-11eb-8a77-997c06e77ef0.png)
+![image](https://user-images.githubusercontent.com/51326421/117004584-6aee0d80-ad10-11eb-80c9-2fdffdbd995a.png)
+
 
 
 ## (post page)
