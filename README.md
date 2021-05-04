@@ -72,7 +72,7 @@ https://app.diagrams.net/#G1Wo8rd6DVJUyCwp7aC6kLpvMkBM3Mgh8l
 
 
 
-## (post page)
+# Register page
 
 ![image](https://user-images.githubusercontent.com/51326421/117006719-f9fc2500-ad12-11eb-8746-bf5cbb8aec14.png)
 
