@@ -14,7 +14,7 @@ Node.js, Express, and MongoDB, JSON, Web Token (JWT) Authentication, Mongoose, M
  # <a href="https://blog-post-api-sadam.herokuapp.com">LIVE API</a>
 
 
-#   Testing Email:      testverstion@gmail.com
+#   Testing Email:     testverstion@gmail.com
 #  Testing Password:    12345test
 
 
