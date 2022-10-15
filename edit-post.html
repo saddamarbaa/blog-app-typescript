@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Required meta tag -->
+		<meta charset="UTF-8" />
+		<meta name="description" content="Blog Layout" />
+		<meta name="keywords" content="news,  Blog Post" />
+		<meta name="author" content="Saddam Arbaa" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+		<!-- First Mobile Viewport  -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<!-- Connect to the Font Awesome -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+			integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+			crossorigin="anonymous"
+		/>
+
+		<!-- the CSS File -->
+		<link rel="stylesheet" href="./styles/style.css" />
+		<link rel="stylesheet" href="./styles/post.css" />
+		<link rel="stylesheet" href="./styles/new-post.css" />
+
+		<!-- Js file -->
+		<script src="./js/edit-post.js" defer></script>
+
+		<!--  Start title -->
+		<title>Edit Post</title>
+	</head>
+	<body class="page">
+		<!-- Start The Header Section -->
+		<header class="header page__header">
+			<div class="profile__image"></div>
+			<div class="profile__name">Edit Post</div>
+			<div class="profile__subtext">Let's edit this post!</div>
+		</header>
+
+		<!-- Start The Main Section -->
+		<main class="main page__main">
+			<div class="page__main__container">
+				<div class="nav navigation">
+					<a href="index.html" class="navigation__button">Back</a>
+				</div>
+
+				<div class="form-container">
+					<form
+						id="newPostForm"
+						action=""
+						method="POST"
+						enctype="multipart/form-data"
+					>
+						<div class="post-title-container">
+							<label for="form-post-title"></label>
+							<input
+								type="text"
+								id="form-post-title-edit"
+								name="post-title"
+								placeholder="Post Title"
+								required
+							/>
+						</div>
+						<div class="post-content-container">
+							<textarea
+								name="post-content"
+								id="form-post-content-edit"
+								placeholder="Post Content"
+								required
+							></textarea>
+						</div>
+
+						<div class="post-image-Container">
+							<label for="form-post-image">Choose Image</label>
+							<input
+								type="file"
+								name="post-image"
+								id="form-post-image-edit"
+								accept="image/*"
+								required
+							/>
+						</div>
+
+						<div class="post-button-container">
+							<button
+								type="submit"
+								id="form-post-submit"
+								onclick="submitEditPost()"
+							>
+								Submit
+							</button>
+							<button type="reset" id="form-post-rest">Rest</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</main>
+
+		<!-- Start the Footer Section -->
+		<footer class="footer page__footer">
+			<div class="page__footer__container">
+				<!-- copyRight -->
+				<div class="footer__copyRight">
+					Made With
+					<i class="fa fa-heart"> </i> By
+					<a href="#" target="_blank"> Saddam Inc</a> &copy; 2021
+				</div>
+				<!-- social Media -->
+				<div class="footer__socialMedia">
+					<a class="facebook" href="https://www.facebook.com/saddam.arbaa">
+						<i class="fab fa-facebook-square fa-2x"></i>
+					</a>
+					<a class="github" href="https://github.com/saddamarbaa">
+						<i class="fab fa-github-square fa-2x"> </i
+					></a>
+					<a class="instagram" href="https://www.instagram.com/saddam.dev/">
+						<i class="fab fa-instagram-square fa-2x"> </i
+					></a>
+					<a class="twitter" href="https://twitter.com/ArbaaSaddam/">
+						<i class="fab fa-twitter-square fa-2x"></i>
+					</a>
+					<a class="linkedin" href="https://www.linkedin.com/in/saddamarbaa/">
+						<i class="fab fa-linkedin-in fa-2x"> </i
+					></a>
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>
