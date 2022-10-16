@@ -1,8 +1,8 @@
 const Bearer = 'Bearer ' + localStorage.getItem('token')
-let API_URL = 'http://localhost:8000'
+let API_BASE_URL = 'http://localhost:8000'
 
 if (location.href.indexOf('netlify') != -1) {
-	API_URL = 'https://blog-post-api-sadam.herokuapp.com'
+	API_BASE_URL = 'https://blog-post-api-sadam.herokuapp.com'
 }
 
 window.onload = () => {
@@ -17,7 +17,7 @@ const getPostIdParam = () => {
 
 const getPost = () => {
 	const postId = getPostIdParam()
-	const fetchUrl = `${API_URL}/api/v1/posts/${postId}`
+	const fetchUrl = `${API_BASE_URL}/api/v1/posts/${postId}`
 	buildPost([], true)
 	fetch(fetchUrl, {
 		method: 'GET',
@@ -36,7 +36,7 @@ const getPost = () => {
 			}
 		})
 		.then((data) => {
-			buildPost(data.data.post, false)
+			buildPost(data.data.post, false, false)
 		})
 		.catch((error) => {
 			buildPost({}, false, true)
@@ -46,7 +46,7 @@ const getPost = () => {
 
 const deletePost = () => {
 	const postId = getPostIdParam()
-	const fetchUrl = `${API_URL}/api/v1/posts/${postId}`
+	const fetchUrl = `${API_BASE_URL}/api/v1/posts/${postId}`
 	fetch(fetchUrl, {
 		method: 'DELETE',
 		headers: {
@@ -77,34 +77,47 @@ const deletePost = () => {
 
 const buildPost = (post, isLoading = false, isApiFail = false) => {
 	const isAdmin = localStorage.getItem('isAdmin')
-	const { _id: id, title, content, postImage, createdAt, updatedAt } = post
-	let image = `${API_URL}/static/${postImage}`
-	const postDate = createdAt
+	const {
+		_id: id,
+		title,
+		content,
+		postImage,
+		createdAt: postDate,
+		updatedAt,
+	} = post
+	let image = `${API_BASE_URL}${postImage}`
 
 	const pageHeader = document.querySelector('.page__header')
-	pageHeader.style.background = `url('${image}') no-repeat center/contain`
-	document.querySelector('#individual__post--title').innerHTML = isLoading
-		? 'Loading'
-		: isApiFail
-		? 'an error occurred, please try again later'
-		: title
 
 	if (!isLoading && !isApiFail) {
+		pageHeader.style.background = `url('${image}') no-repeat center/contain`
+		document.querySelector('.post--text-empty  >p').innerHTML = ''
 		document.querySelector(
 			'#individual__post--date',
-		).innerHTML = `Published on: ${postDate}`
+		).innerHTML = `Published on: ${postDate.split('T')[0]}`
 		document.querySelector('#individual__post--content >p').innerHTML = content
+		document.querySelector('#individual__post--title').innerHTML = title
 
 		if (isAdmin === 'true') {
-			console.log(isAdmin)
 			const deletePostButton = document.getElementById(
 				'individual__post-delete',
+			)
+			const updatePostButton = document.getElementById(
+				'individual__post-update',
 			)
 			const deletePostContainer = document.getElementById(
 				'delete-post-container',
 			)
 			deletePostContainer.classList = 'navigation'
 			deletePostButton.innerHTML = 'Delete'
+			updatePostButton.innerHTML = 'Edit'
+			updatePostButton.href = `/edit-post.html?id=${id}`
 		}
+	} else {
+		document.querySelector('.post--text-empty  >p').innerHTML = isLoading
+			? 'Loading'
+			: isApiFail
+			? 'an error occurred, please try again later'
+			: ''
 	}
 }

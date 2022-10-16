@@ -1,11 +1,3 @@
-/**
- * * @format
- * style.css
- * Author: Saddam Arbaa
- *
- * @format
- */
-
 /********** Base styles **********/
 
 :root {
@@ -19,6 +11,7 @@
 	--margin-top: 2rem;
 	--margin-bottom: 2rem;
 	--deepGreen: #004186;
+	--green-400: #006ce5;
 	--space16: 16px;
 	--space20: 20px;
 	--space25: 25px;
@@ -45,6 +38,12 @@ p {
 	line-height: var(--line-height-space);
 }
 
+.page {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
 a#individualPost {
 	text-decoration: none;
 }
@@ -56,17 +55,17 @@ a#individualPost {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	min-height: 350px;
+	min-height: 20rem;
 	color: var(--white);
-	background: url("../assets/banner.jpeg") no-repeat center center/cover;
+	background: url('../assets/banner.jpeg') no-repeat center center/cover;
 	position: relative;
 }
 
 .page__header .profile__image {
-	width: 150px;
-	height: 150px;
+	width: 9.375rem;
+	height: 9.375rem;
 	background: var(--white);
-	background: url("../assets/profile2.jpg") no-repeat center center/cover;
+	background: url('../assets/profile2.jpg') no-repeat center center/cover;
 	border-radius: var(--space50) !important;
 	-webkit-border-radius: var(--space50) !important;
 	-moz-border-radius: var(--space50) !important;
@@ -81,12 +80,12 @@ a#individualPost {
 }
 
 .page__header .profile__subtext {
-	margin-top: 8px;
+	margin-top: 0.5rem;
 }
 
 .page__header::before {
 	position: absolute;
-	content: "";
+	content: '';
 	top: 0;
 	bottom: 0;
 	left: 0;
@@ -107,15 +106,19 @@ a#individualPost {
 .page__main {
 	display: flex;
 	justify-content: center;
-	margin-top: var(--margin-top);
+	margin-top: var(--space60);
+	margin-bottom: var(--space40);
+	min-height: 42vh;
+	flex: 1;
 }
 
 .page__main .page__main__container {
 	width: 100%;
-	max-width: 750px;
+	max-width: 45rem;
 	padding-left: 1rem;
 	padding-right: 1rem;
 	background-color: white;
+	word-break: break-all;
 }
 
 .page__main .main__container--post {
@@ -131,11 +134,11 @@ a#individualPost {
 	-moz-transition: var(--margin-bottom);
 	-ms-transition: var(--margin-bottom);
 	-o-transition: var(--margin-bottom);
-	border-radius: 8px;
-	-webkit-border-radius: 8px;
-	-moz-border-radius: 8px;
-	-ms-border-radius: 8px;
-	-o-border-radius: 8px;
+	border-radius: 0.5rem;
+	-webkit-border-radius: 0.5rem;
+	-moz-border-radius: 0.5rem;
+	-ms-border-radius: 0.5rem;
+	-o-border-radius: 0.5rem;
 }
 
 .page__main .main__container--post:hover {
@@ -149,20 +152,21 @@ a#individualPost {
 
 .page__main .main__container--post__image {
 	width: 100%;
-	height: 350px;
+	height: 22rem;
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: cover;
 	margin-top: 1em;
 	margin-bottom: 1em;
+	overflow: hidden;
 }
 
 .page__main .main__container--post__content {
-	padding: 24px;
+	padding: 1.5rem;
 }
 
 .page__main .post--date {
-	font-size: 12px;
+	font-size: 0.9rem;
 	color: #adb5bd;
 	font-weight: 600;
 }
@@ -172,6 +176,7 @@ a#individualPost {
 	font-size: 1.5em;
 	margin-top: 1em;
 	font-weight: bold;
+	max-height: 7.5rem;
 }
 
 .page__main .post--text {
@@ -179,8 +184,14 @@ a#individualPost {
 	margin-bottom: 0.9em;
 	color: #495057;
 	line-height: var(--line-height-space);
-	max-height: 110px;
+	max-height: 16rem;
 	overflow: hidden;
+}
+
+.page__main .post--text-empty {
+	text-align: center;
+	width: 100%;
+	padding: 2rem 1.5rem;
 }
 
 /*======  Start the Footer Section  ======*/
@@ -224,7 +235,7 @@ a#individualPost {
 }
 
 .page__footer .footer__socialMedia a {
-	margin: 8px;
+	margin: 0.5rem;
 }
 
 .page__footer .footer__socialMedia .facebook:hover {
@@ -300,15 +311,15 @@ a#individualPost {
 	}
 
 	.page__main .main__container--post__image {
-		flex-basis: 40%;
+		flex-basis: 44%;
 	}
 
 	.page__main .main__container--post__content {
-		flex-basis: 60%;
+		flex-basis: 56%;
 	}
 
 	.page__main .post--text {
-		max-height: 120px;
+		max-height: 13rem;
 	}
 
 	.page__footer {

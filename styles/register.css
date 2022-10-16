@@ -1,8 +1,5 @@
-/** @format */
-
 /* overwrite login.css */
 .login .register-wraper {
-	grid-template-rows: 600px !important;
 	margin-top: 30px;
 }
 
@@ -11,4 +8,8 @@
 	color: var(--deepGreen);
 	margin-bottom: 10px !important;
 	display: block;
+}
+
+.login-inner-wraper .confirm-password {
+	display: none;
 }

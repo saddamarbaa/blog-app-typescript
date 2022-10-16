@@ -1,4 +1,3 @@
-/** @format */
 :root {
 	--section-background: #f2f7fa;
 }
@@ -14,23 +13,10 @@
 	padding-bottom: var(--space20);
 }
 
-.login .login-wraper {
-	background-color: var(--section-background);
-	display: grid;
-	justify-content: center;
-	align-content: center;
-	grid-template-columns: 400px;
-	grid-template-rows: auto;
-}
-
-@media (max-width: 380px) {
-	.login .login-wraper {
-		grid-template-columns: 280px;
-	}
-
-	.container {
-		width: 280px;
-	}
+.login .container {
+	width: 100vw;
+	max-width: 32rem;
+	padding: 1rem;
 }
 
 .login-inner-wraper {
@@ -42,16 +28,19 @@
 	-moz-border-radius: 5px;
 	-ms-border-radius: 5px;
 	-o-border-radius: 5px;
+	width: 100%;
 }
 
 .login-inner-wraper div:first-child {
-	background-color: var(--drak33Grey);
+	/* background-color: var(--drak33Grey); */
 	transition: 0.4s;
 	-webkit-transition: 0.4s;
 	-moz-transition: 0.4s;
 	-ms-transition: 0.4s;
 	-o-transition: 0.4s;
-	padding: 10px;
+	padding: 0 10px;
+	text-align: center;
+	color: var(--drak33Grey);
 }
 
 .login-inner-wraper .user-name {
@@ -59,9 +48,9 @@
 }
 
 .login-inner-wraper input#registered,
-.login-inner-wraper input[type="text"],
-.login-inner-wraper input[type="password"],
-.login-inner-wraper input[type="email"] {
+.login-inner-wraper input[type='text'],
+.login-inner-wraper input[type='password'],
+.login-inner-wraper input[type='email'] {
 	width: 100%;
 	color: var(--drak33Grey);
 	padding: var(--space16);
@@ -96,25 +85,43 @@
 	color: white;
 	cursor: default;
 	display: none;
+	text-align: center;
 }
 
 .login-inner-wraper .buttons {
 	display: grid;
 }
 
-.login-inner-wraper input[type="submit"],
-.login-inner-wraper input[type="button"],
-.login-inner-wraper input[type="reset"] {
-	background-color: var(--drak33Grey);
+.login-inner-wraper input[type='submit'],
+.login-inner-wraper input[type='button'],
+.login-inner-wraper input[type='reset'] {
+	background-color: var(--green-400);
 	color: var(--white);
-	padding: 16px;
+	padding: 0.8rem;
 	font-size: var(--space20);
 	cursor: pointer;
 }
 
-.login-inner-wraper input[type="submit"]:hover,
-.login-inner-wraper input[type="button"]:hover,
-.login-inner-wraper input[type="reset"]:hover {
+.login-inner-wraper input[type='submit']:hover,
+.login-inner-wraper input[type='button']:hover,
+.login-inner-wraper input[type='reset']:hover {
 	background-color: var(--deepGreen);
 }
 
+.login-inner-wraper p {
+	color: var(--green-400);
+}
+
+.login-inner-wraper p.forgot-password {
+	margin-bottom: 1rem;
+	display: none;
+}
+
+.login-inner-wraper .buttons p {
+	text-align: center;
+}
+
+.login-inner-wraper p:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
