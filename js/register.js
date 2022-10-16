@@ -1,85 +1,51 @@
-/** @format */
+const registerForm = document.getElementById('create-account')
+const Bearer = 'Bearer ' + localStorage.getItem('token')
+let API_URL = 'http://localhost:8000'
 
-// Selectors
-
-// The API URL
-let API_URL = "http://localhost:3000";
-
-if (location.href.indexOf("netlify") != -1) {
-	API_URL = "https://blog-post-api-sadam.herokuapp.com";
+if (location.href.indexOf('netlify') != -1) {
+	API_URL = 'https://blog-post-api-sadam.herokuapp.com'
 }
 
-const registerForm = document.getElementById("registerForm");
+registerForm.addEventListener('click', (event) => {
+	console.log(22)
+	event.preventDefault()
 
-// Bearer Token
-const Bearer = "Bearer " + localStorage.getItem("token");
-
-/**
- * Event handler for a form  on submit event.
- * @param {SubmitEvent} event
- */
-registerForm.addEventListener("submit", (event) => {
-	/**
-	 * This prevents the default behaviour of the browser submitting
-	 * the form so that we can handle things instead.
-	 */
-	event.preventDefault();
-
-	// User input payload(user information)
-	const user = document.getElementById("registerForm");
+	const user = document.getElementById('registerForm')
 	const payload = {
-		firstName: user.firstName.value,
-		lastName: user.lastName.value,
+		name: user.name.value,
 		email: user.email.value,
 		password: user.password.value,
-	};
+		confirmPassword: user.password.value,
+	}
 
-	// call registerUser() function
-	registerUser(payload);
-});
+	registerUser(payload)
+})
 
 const registerUser = (payload) => {
-	// POST request using fetch()
-	fetch(API_URL + "/api/users/signup", {
-		/**
-		 * The default method for a request with fetch is GET,
-		 * so we must tell it to use the POST HTTP method.
-		 */
-		method: "POST",
-		/**
-		 * These headers will be added to the request and tell
-		 * the API that the request body is JSON and that we can
-		 * accept JSON responses.
-		 */
+	fetch(API_URL + '/api/v1/auth/signup', {
+		method: 'POST',
 		headers: {
-			"Content-Type": "application/json",
-			Accept: "application/json",
+			'Content-Type': 'application/json',
+			Accept: 'application/json',
 			Authorization: Bearer,
 		},
-
-		// The body of our POST request is the JSON string that we created above.
 		body: JSON.stringify(payload),
 	})
 		.then((response) => {
 			if (response.ok) {
-				// Convert to JSON  and returned
-				return response.json();
+				return response.json()
 			} else {
-				// throw new Error(response.statusText);
-				throw new Error("Something went wrong");
+				throw new Error('Something went wrong')
 			}
-		}) // returns a promise already
+		})
 		.then((data) => {
-			// Displaying results to console
-			console.log(data);
-
-			// redirect user to the login page
-			location.href = `/login.html?existingEmail=${payload.email}&registered=true`;
+			// console.log(data)
+			location.href = `/login.html?existingEmail=${payload.email}&registered=true`
 		})
 		.catch((error) => {
-			alert("already register");
-			// redirect user to the login page
-			location.href = `/login.html?existingEmail=${payload.email}`;
-			// console.log("Fetch Error :-S", error);
-		});
-};
+			alert('Auth Failed')
+			// location.href = `/login.html?existingEmail=${payload.email}`
+		})
+}
+
+const redirectTLoginPage = () => (location.href = '/login.html')
