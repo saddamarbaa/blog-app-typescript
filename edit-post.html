@@ -51,7 +51,7 @@
 
 				<div class="form-container">
 					<form
-						id="newPostForm"
+						id="editPostForm"
 						action=""
 						method="POST"
 						enctype="multipart/form-data"
@@ -82,18 +82,11 @@
 								name="post-image"
 								id="form-post-image-edit"
 								accept="image/*"
-								required
 							/>
 						</div>
 
 						<div class="post-button-container">
-							<button
-								type="submit"
-								id="form-post-submit"
-								onclick="submitEditPost()"
-							>
-								Submit
-							</button>
+							<button type="submit" id="form-post-submit">Submit</button>
 							<button type="reset" id="form-post-rest">Rest</button>
 						</div>
 					</form>

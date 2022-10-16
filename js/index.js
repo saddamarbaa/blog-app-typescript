@@ -1,77 +1,59 @@
-/** @format */
+const Bearer = 'Bearer ' + localStorage.getItem('token')
+let API_BASE_URL = 'http://localhost:8000'
 
-const Bearer = "Bearer " + localStorage.getItem("token");
-
-let API_BASE_URL = "http://localhost:3000";
-
-if (location.href.indexOf("netlify") != -1) {
-	API_BASE_URL = "https://blog-post-api-sadam.herokuapp.com";
+if (location.href.indexOf('netlify') != -1) {
+	API_BASE_URL = 'https://blog-post-api-sadam.herokuapp.com'
 }
 
-// Call function whe the page is loaded
 window.onload = () => {
-	getPosts();
-};
+	getPosts()
+}
 
-// function to get the posts
 const getPosts = () => {
-	// GET request using fetch()
-	fetch(API_BASE_URL + "/api/posts", {
-		/**
-		 * The default method for a request with fetch is GET,
-		 * so we must tell it to use the POST HTTP method.
-		 */
-		method: "GET",
-		/**
-		 * These headers will be added to the request and tell
-		 * the API that the request body is JSON and that we can
-		 * accept JSON responses.
-		 */
+	buildPosts([], true)
+	fetch(API_BASE_URL + '/api/v1/posts', {
+		method: 'GET',
 		headers: {
-			"Content-Type": "application/json",
-			Accept: "application/json",
+			'Content-Type': 'application/json',
+			Accept: 'application/json',
 			Authorization: Bearer,
 		},
 	})
 		.then((response) => {
 			if (response.ok) {
-				return response.json();
+				return response.json()
 			} else {
-				// throw new Error(response.statusText);
-				throw new Error("Something went wrong");
+				throw new Error('Something went wrong')
 			}
 		})
 		.then((data) => {
-			// console.log(data.result.posts);
-			buildPosts(data.result.posts);
+			buildPosts(data?.data?.posts || [], false, false)
 		})
 		.catch((error) => {
-			console.log("Fetch Error :-S", error);
-		});
-};
+			buildPosts([], false, true)
+			console.log('Fetch Error :-S', error)
+		})
+}
 
-/**
- *  function to Display the posts to the frontEnd
- *  @param {posts} posts Object
- */
-const buildPosts = (posts) => {
-	let blogPostContent = document.querySelector("#blogPostContent");
-	posts.forEach((post) => {
-		const { id, title, content, post_image, added_date } = post;
-		let image = `${API_BASE_URL}/static/${post_image}`;
-		const postDtae = new Date(parseInt(added_date)).toDateString();
-		const postlink = `/post.html?id=${id}`;
+const buildPosts = (posts, isLoading = false, isApiFail = false) => {
+	let blogPostContent = document.querySelector('#blogPostContent')
 
-		blogPostContent.innerHTML += `
+	if (posts.length > 0 && !isLoading && !isApiFail) {
+		blogPostContent.innerHTML = ''
+		posts.forEach((post) => {
+			const { _id: id, title, content, postImage, createdAt } = post
+			let image = `${API_BASE_URL}${postImage}`
+			const postDate = createdAt
+			const postlink = `/post.html?id=${id}`
+			blogPostContent.innerHTML += `
     <a href="${postlink}" id="individualPost">
 				<div class="main__container--post">
 						<div class="main__container--post__image" 
 										style="background-image: url(${image});">
 					</div>
-
 					<div class="main__container--post__content">
 						<!-- blog_post_date -->
-						<div class="post--date">${postDtae}</div>
+						<div class="post--date">Published on: ${postDate.split('T')[0]}</div>
 						<!-- blog_post_header -->
 						<div class="post--title">${title}</div>
 						<!-- blog_post_content -->
@@ -90,15 +72,30 @@ const buildPosts = (posts) => {
 			   </div>
 		    </div>
 		</a>
-		`;
-	});
-};
+		`
+		})
+	} else {
+		let fallBackContent =
+			posts.length === 0 && !isLoading && !isApiFail
+				? 'No posts founds'
+				: isLoading
+				? 'Loading'
+				: isApiFail
+				? 'an error occurred, please try again later'
+				: ''
+		blogPostContent.innerHTML = `
+				<div class="main__container--post">
+						<div class="post--text-empty post--text">
+								<p>
+							${fallBackContent}
+								</p>
+			   </div>
+		    </div>`
+	}
+}
 
-// Clear Local Storage
-const deleteTokenFromlocalStorage = document.getElementById(
-	"removeTokenButton",
-);
+const deleteTokenFromLocalStorage = document.getElementById('removeTokenButton')
 
-deleteTokenFromlocalStorage.addEventListener("click", () => {
-	localStorage.removeItem("token");
-});
+deleteTokenFromLocalStorage.addEventListener('click', () => {
+	localStorage.removeItem('token')
+})
