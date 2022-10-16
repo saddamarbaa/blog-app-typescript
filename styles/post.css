@@ -1,12 +1,11 @@
 /**
  * Main Section
  *
- * @format
  */
 
 .page__header::before {
 	position: absolute;
-	content: "";
+	content: '';
 	top: 0;
 	bottom: 0;
 	left: 0;
@@ -22,7 +21,7 @@
 	text-decoration: none;
 	color: var(--drak3eGrey);
 	border: 1px solid var(--drak3eGrey);
-	padding: 10px 16px;
+	padding: 10px 26px;
 	border-radius: 8px;
 	cursor: pointer;
 	transition: all 0.2s ease-in-out;
