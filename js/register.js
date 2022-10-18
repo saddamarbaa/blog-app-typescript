@@ -7,9 +7,7 @@ if (location.href.indexOf('netlify') != -1) {
 }
 
 registerForm.addEventListener('click', (event) => {
-	console.log(22)
 	event.preventDefault()
-
 	const user = document.getElementById('registerForm')
 	const payload = {
 		name: user.name.value,
@@ -32,19 +30,25 @@ const registerUser = (payload) => {
 		body: JSON.stringify(payload),
 	})
 		.then((response) => {
-			if (response.ok) {
-				return response.json()
+			return response.json()
+		})
+		.then((response) => {
+			if (
+				response?.success &&
+				response.status >= 200 &&
+				response.status < 300
+			) {
+				alert(response?.message)
+				location.href = `/login.html?existingEmail=${payload.email}&registered=true`
 			} else {
-				throw new Error('Something went wrong')
+				throw new Error(
+					response?.message || 'Something went wrong please try again',
+				)
 			}
 		})
-		.then((data) => {
-			// console.log(data)
-			location.href = `/login.html?existingEmail=${payload.email}&registered=true`
-		})
 		.catch((error) => {
-			alert('Auth Failed')
-			// location.href = `/login.html?existingEmail=${payload.email}`
+			console.log('Fetch Error :-S', error)
+			alert(error?.message)
 		})
 }
 

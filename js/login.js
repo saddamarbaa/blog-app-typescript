@@ -29,20 +29,29 @@ const loginfetch = (payload) => {
 		body: JSON.stringify(payload),
 	})
 		.then((response) => {
-			if (response.ok) {
-				return response.json()
-			} else {
-				throw new Error('Something went wrong')
-			}
+			return response.json()
 		})
-		.then((data) => {
-			localStorage.setItem('token', data?.data?.user?.token)
-			console.log(data?.data?.user)
-			localStorage.setItem('isAdmin', data?.data?.user?.role === 'admin')
-			location.href = '/'
+		.then((response) => {
+			if (
+				response?.success &&
+				response.status === 200 &&
+				response?.data?.user?.refreshToken &&
+				response?.data?.user?.accessToken
+			) {
+				localStorage.setItem('token', response?.data?.user?.accessToken)
+				localStorage.setItem('refreshToken', response?.data?.user?.refreshToken)
+				localStorage.setItem('accessToken', response?.data?.user?.accessToken)
+				localStorage.setItem('isAdmin', response?.data?.user?.role === 'admin')
+				location.href = '/'
+			} else {
+				throw new Error(
+					response?.message || 'Something went wrong please try again',
+				)
+			}
 		})
 		.catch((error) => {
 			console.log('Fetch Error :-S', error)
+			alert(error?.message)
 		})
 }
 
