@@ -48,6 +48,14 @@ a#individualPost {
 	text-decoration: none;
 }
 
+textarea:hover,
+textarea:focus,
+textarea:active input:hover,
+input:focus,
+input:active {
+	outline: 0;
+}
+
 /*======  Start The Header Section  ======*/
 
 .page__header {
