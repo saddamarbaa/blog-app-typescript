@@ -1,4 +1,3 @@
-const Bearer = 'Bearer ' + localStorage.getItem('token')
 let API_BASE_URL = 'http://localhost:8000'
 const title = document.getElementById('form-post-title-edit')
 const content = document.getElementById('form-post-content-edit')
@@ -27,7 +26,7 @@ const getPost = () => {
 		headers: {
 			'Content-Type': 'application/json',
 			Accept: 'application/json',
-			Authorization: Bearer,
+			Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
 		},
 	})
 		.then((response) => {
@@ -48,10 +47,15 @@ const getPost = () => {
 }
 
 editPostForm.addEventListener('submit', (event) => {
+	event.preventDefault()
+	handleUpdatePost()
+})
+
+const handleUpdatePost = () => {
 	const postId = getPostIdParam()
 	const fetchUrl = `${API_BASE_URL}/api/v1/posts/${postId}`
-	event.preventDefault()
 	let formData = new FormData()
+
 	formData.append('postImage', fileInputElement.files[0])
 	formData.append('title', title.value || '')
 	formData.append('content', content.value || '')
@@ -60,18 +64,64 @@ editPostForm.addEventListener('submit', (event) => {
 		method: 'PATCH',
 		body: formData,
 		headers: {
-			Authorization: Bearer,
+			Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
 		},
 	})
 		.then((response) => {
-			if (response.ok) {
-				return response.json()
+			return response.json()
+		})
+		.then((response) => {
+			if (
+				response?.success &&
+				response.status >= 200 &&
+				response.status < 300
+			) {
+				location.href = '/'
 			} else {
-				throw new Error('Something went wrong')
+				throw new Error(response?.message)
 			}
 		})
-		.then((data) => {
-			location.href = '/'
+		.catch((error) => {
+			console.log('Fetch Error :-S', error)
+			if (error?.message === 'jwt expired') {
+				handleRefreshTokenExpiration()
+			} else {
+				alert(error?.message)
+			}
 		})
-		.catch((error) => {})
-})
+}
+
+function handleRefreshTokenExpiration() {
+	fetch(API_BASE_URL + '/api/v1/auth/refresh-token', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			Accept: 'application/json',
+		},
+		body: JSON.stringify({
+			refreshToken: localStorage.getItem('refreshToken'),
+		}),
+	})
+		.then((response) => {
+			return response.json()
+		})
+		.then((response) => {
+			if (
+				response?.success &&
+				response.status === 200 &&
+				response?.data?.user?.refreshToken &&
+				response?.data?.user?.accessToken
+			) {
+				localStorage.setItem('refreshToken', response?.data?.user?.refreshToken)
+				localStorage.setItem('accessToken', response?.data?.user?.accessToken)
+				handleUpdatePost()
+			} else {
+				throw new Error(response?.message)
+			}
+		})
+		.catch((error) => {
+			// console.log('Fetch Error :-S', error)
+			alert(error?.message)
+			location.href = '/login.html'
+		})
+}

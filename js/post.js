@@ -1,4 +1,4 @@
-const Bearer = 'Bearer ' + localStorage.getItem('token')
+const Bearer = 'Bearer ' + localStorage.getItem('accessToken')
 let API_BASE_URL = 'http://localhost:8000'
 
 if (location.href.indexOf('netlify') != -1) {
@@ -40,37 +40,6 @@ const getPost = () => {
 		})
 		.catch((error) => {
 			buildPost({}, false, true)
-			console.log('Fetch Error :-S', error)
-		})
-}
-
-const deletePost = () => {
-	const postId = getPostIdParam()
-	const fetchUrl = `${API_BASE_URL}/api/v1/posts/${postId}`
-	fetch(fetchUrl, {
-		method: 'DELETE',
-		headers: {
-			'Content-Type': 'application/json',
-			Accept: 'application/json',
-			Authorization: Bearer,
-		},
-	})
-		.then((response) => {
-			if (response.ok) {
-				return response.json()
-			} else {
-				// throw new Error(response.statusText);
-				throw new Error('Something went wrong')
-			}
-		})
-		.then((data) => {
-			// delete the data then the  redirect user to the home page
-			location.href = '/login.html'
-		})
-		.catch((error) => {
-			alert('You Are Unauthorized To Delete This Post')
-			localStorage.removeItem('token')
-			location.href = '/login.html'
 			console.log('Fetch Error :-S', error)
 		})
 }
@@ -120,4 +89,75 @@ const buildPost = (post, isLoading = false, isApiFail = false) => {
 			? 'an error occurred, please try again later'
 			: ''
 	}
+}
+
+function handleDeletePost() {
+	const postId = getPostIdParam()
+	const fetchUrl = `${API_BASE_URL}/api/v1/posts/${postId}`
+	fetch(fetchUrl, {
+		method: 'DELETE',
+		headers: {
+			'Content-Type': 'application/json',
+			Accept: 'application/json',
+			Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
+		},
+	})
+		.then((response) => {
+			return response.json()
+		})
+		.then((response) => {
+			if (
+				response?.success &&
+				response.status >= 200 &&
+				response.status < 300
+			) {
+				location.href = '/'
+			} else {
+				console.log(response)
+				throw new Error(response?.message)
+			}
+		})
+		.catch((error) => {
+			console.log('Fetch Error :-S', error)
+			if (error?.message === 'jwt expired') {
+				handleRefreshTokenExpiration()
+			} else {
+				alert(error?.message)
+			}
+		})
+}
+
+function handleRefreshTokenExpiration() {
+	fetch(API_BASE_URL + '/api/v1/auth/refresh-token', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			Accept: 'application/json',
+		},
+		body: JSON.stringify({
+			refreshToken: localStorage.getItem('refreshToken'),
+		}),
+	})
+		.then((response) => {
+			return response.json()
+		})
+		.then((response) => {
+			if (
+				response?.success &&
+				response.status === 200 &&
+				response?.data?.user?.refreshToken &&
+				response?.data?.user?.accessToken
+			) {
+				localStorage.setItem('refreshToken', response?.data?.user?.refreshToken)
+				localStorage.setItem('accessToken', response?.data?.user?.accessToken)
+				handleDeletePost()
+			} else {
+				throw new Error(response?.message)
+			}
+		})
+		.catch((error) => {
+			// console.log('Fetch Error :-S', error)
+			alert(error?.message)
+			location.href = '/login.html'
+		})
 }
