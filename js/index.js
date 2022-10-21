@@ -1,4 +1,4 @@
-const Bearer = 'Bearer ' + localStorage.getItem('token')
+const Bearer = 'Bearer ' + localStorage.getItem('accessToken')
 let API_BASE_URL = 'http://localhost:8000'
 
 if (location.href.indexOf('netlify') != -1) {

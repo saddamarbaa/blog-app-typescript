@@ -7,7 +7,7 @@
  *  if token is not available redirect user to login page
  */
 
-const currentToken = localStorage.getItem('token')
+const currentToken = localStorage.getItem('accessToken')
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 const existingEmail = urlParams.get('existingEmail')
@@ -33,7 +33,7 @@ window.onload = () => {
 
 // check if the user is already login
 const checkIfLoggedIn = () => {
-	const currentToken = localStorage.getItem('token')
+	const currentToken = localStorage.getItem('accessToken')
 	if (currentToken) {
 		if (
 			location.href.includes('/login.html') ||
@@ -55,7 +55,8 @@ const checkIfLoggedIn = () => {
 }
 
 const LogOut = () => {
-	localStorage.removeItem('token')
+	localStorage.removeItem('refreshToken')
+	localStorage.removeItem('accessToken')
 	location.href = 'login.html'
 }
 

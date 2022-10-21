@@ -1,5 +1,5 @@
 const loginForm = document.getElementById('loginForm')
-const Bearer = 'Bearer ' + localStorage.getItem('token')
+const Bearer = 'Bearer ' + localStorage.getItem('accessToken')
 let API_URL = 'http://localhost:8000'
 
 if (location.href.indexOf('netlify') != -1) {
@@ -38,7 +38,6 @@ const loginfetch = (payload) => {
 				response?.data?.user?.refreshToken &&
 				response?.data?.user?.accessToken
 			) {
-				localStorage.setItem('token', response?.data?.user?.accessToken)
 				localStorage.setItem('refreshToken', response?.data?.user?.refreshToken)
 				localStorage.setItem('accessToken', response?.data?.user?.accessToken)
 				localStorage.setItem('isAdmin', response?.data?.user?.role === 'admin')
