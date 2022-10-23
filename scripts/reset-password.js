@@ -21,7 +21,7 @@ class FormValidator {
 		}
 
 		if (isAlVaild) {
-			handleSignUp()
+			// handleSignUp()
 		}
 	}
 
@@ -48,40 +48,15 @@ class FormValidator {
 	}
 
 	validateFields(field) {
-		// Check presence of values
 		if (field.value.trim() === '') {
 			this.setStatus(field, `${field.name} cannot be blank`, 'error')
-		} else {
-			this.setStatus(field, null, 'success')
-		}
-
-		if (
+		} else if (
 			field.value.trim() &&
 			field.name === 'password' &&
 			field.value.length < 6
 		) {
 			this.setStatus(field, `Password must be at least 6 characters`, 'error')
-		} else if (
-			field.value.trim() &&
-			field.name === 'name' &&
-			field.value.length < 3
-		) {
-			this.setStatus(field, `Name must be at least 3 characters`, 'error')
-		}
-
-		// check for a valid email address
-		if (field.type === 'email') {
-			const re =
-				/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-			if (re.test(field.value)) {
-				this.setStatus(field, null, 'success')
-			} else {
-				this.setStatus(field, 'Please provide a valid email address', 'error')
-			}
-		}
-
-		// Password confirmation edge case
-		if (field.id === 'confirm-password') {
+		} else if (field.id === 'confirm-password') {
 			const passwordField = this.form.querySelector('#password')
 			if (field.value.trim() == '') {
 				this.setStatus(field, 'Password confirmation required', 'error')
@@ -90,6 +65,8 @@ class FormValidator {
 			} else {
 				this.setStatus(field, null, 'success')
 			}
+		} else {
+			this.setStatus(field, null, 'success')
 		}
 	}
 
@@ -130,16 +107,8 @@ class FormValidator {
 	}
 }
 
-const registerForm = document.getElementById('registerForm')
+const registerForm = document.getElementById('resetPassword')
 const fields = {
-	name: {
-		value: 'name',
-		isVaild: false,
-	},
-	email: {
-		value: 'email',
-		isVaild: false,
-	},
 	password: {
 		value: 'password',
 		isVaild: false,
@@ -198,5 +167,3 @@ function handleSignUp() {
 			alert(error?.message)
 		})
 }
-
-const redirectTLoginPage = () => (location.href = '/login.html')

@@ -21,7 +21,7 @@ class FormValidator {
 		}
 
 		if (isAlVaild) {
-			handleSignUp()
+			handleForgotPassword()
 		}
 	}
 
@@ -48,29 +48,9 @@ class FormValidator {
 	}
 
 	validateFields(field) {
-		// Check presence of values
 		if (field.value.trim() === '') {
 			this.setStatus(field, `${field.name} cannot be blank`, 'error')
-		} else {
-			this.setStatus(field, null, 'success')
-		}
-
-		if (
-			field.value.trim() &&
-			field.name === 'password' &&
-			field.value.length < 6
-		) {
-			this.setStatus(field, `Password must be at least 6 characters`, 'error')
-		} else if (
-			field.value.trim() &&
-			field.name === 'name' &&
-			field.value.length < 3
-		) {
-			this.setStatus(field, `Name must be at least 3 characters`, 'error')
-		}
-
-		// check for a valid email address
-		if (field.type === 'email') {
+		} else if (field.type === 'email') {
 			const re =
 				/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 			if (re.test(field.value)) {
@@ -78,18 +58,8 @@ class FormValidator {
 			} else {
 				this.setStatus(field, 'Please provide a valid email address', 'error')
 			}
-		}
-
-		// Password confirmation edge case
-		if (field.id === 'confirm-password') {
-			const passwordField = this.form.querySelector('#password')
-			if (field.value.trim() == '') {
-				this.setStatus(field, 'Password confirmation required', 'error')
-			} else if (field.value != passwordField.value) {
-				this.setStatus(field, 'Password does not match', 'error')
-			} else {
-				this.setStatus(field, null, 'success')
-			}
+		} else {
+			this.setStatus(field, null, 'success')
 		}
 	}
 
@@ -130,45 +100,28 @@ class FormValidator {
 	}
 }
 
-const registerForm = document.getElementById('registerForm')
+const forgotPassword = document.getElementById('forgotPassword')
 const fields = {
-	name: {
-		value: 'name',
-		isVaild: false,
-	},
 	email: {
 		value: 'email',
 		isVaild: false,
 	},
-	password: {
-		value: 'password',
-		isVaild: false,
-	},
-	'confirm-password': {
-		value: 'confirm-password',
-		isVaild: false,
-	},
 }
-
 let API_URL = 'http://localhost:8000'
 
-const validator = new FormValidator(registerForm, fields)
+const validator = new FormValidator(forgotPassword, fields)
 validator.initialize()
 
 if (location.href.indexOf('netlify') != -1) {
 	API_URL = 'https://blog-post-api-sadam.herokuapp.com'
 }
 
-function handleSignUp() {
+function handleForgotPassword() {
 	const payload = {
-		name: registerForm.name.value,
-		email: registerForm.email.value,
-		password: registerForm.password.value,
-		confirmPassword: registerForm['confirm-password'].value,
-		acceptTerms: registerForm.checkbox.checked,
+		email: forgotPassword.email.value,
 	}
 
-	fetch(API_URL + '/api/v1/auth/signup', {
+	fetch(API_URL + '/api/v1/auth/forget-password', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -180,13 +133,9 @@ function handleSignUp() {
 			return response.json()
 		})
 		.then((response) => {
-			if (
-				response?.success &&
-				response.status >= 200 &&
-				response.status < 300
-			) {
+			if (response?.success && response.status === 200) {
 				alert(response?.message)
-				location.href = `/login.html?existingEmail=${payload.email}&registered=true`
+				location.href = '/login.html'
 			} else {
 				throw new Error(
 					response?.message || 'Something went wrong please try again',
@@ -198,5 +147,8 @@ function handleSignUp() {
 			alert(error?.message)
 		})
 }
+
+const redirectToForgotPasswordPage = () =>
+	(location.href = '/forget-password.html')
 
 const redirectTLoginPage = () => (location.href = '/login.html')

@@ -1,28 +1,27 @@
 class FormValidator {
-	constructor(form, fields, validationSchema) {
+	constructor(form, fields) {
 		this.form = form
 		this.fields = fields
-		this.validateFields
-		this.validationSchema = validationSchema
 	}
 
 	initialize() {
+		console.log('form', this.form)
+		console.log('fields', this.fields)
+
 		this.validateOnEntry()
 		this.validateOnSubmit()
 	}
 
 	handleApiCall() {
 		let isAlVaild = true
-		let self = this
-		for (const property in self.validationSchema) {
-			if (!self.validationSchema[property]) {
+		for (const property in this.fields) {
+			if (!this.fields[property]?.isVaild) {
 				isAlVaild = false
 			}
+		}
 
-			if (isAlVaild) {
-				// console.log(self.validationSchema)
-				handleLogin()
-			}
+		if (isAlVaild) {
+			handleLogin()
 		}
 	}
 
@@ -30,7 +29,7 @@ class FormValidator {
 		let self = this
 		this.form.addEventListener('submit', (e) => {
 			e.preventDefault()
-			self.fields.forEach((field) => {
+			Object.keys(self.fields).forEach((field) => {
 				const input = document.querySelector(`#${field}`)
 				self.validateFields(input)
 			})
@@ -40,7 +39,7 @@ class FormValidator {
 
 	validateOnEntry() {
 		let self = this
-		this.fields.forEach((field) => {
+		Object.keys(self.fields).forEach((field) => {
 			const input = document.querySelector(`#${field}`)
 			input.addEventListener('input', (event) => {
 				self.validateFields(input)
@@ -63,7 +62,7 @@ class FormValidator {
 		) {
 			this.setStatus(field, `Password must be at least 6 characters`, 'error')
 		}
-
+		// check for a valid email address
 		if (field.type === 'email') {
 			const re =
 				/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -77,8 +76,10 @@ class FormValidator {
 
 	setStatus(field, message, status) {
 		const errorMessage = field.parentElement.querySelector('.error-message')
+
 		if (status === 'success') {
-			this.validationSchema[field.name] = true
+			this.fields[field.name].isVaild = true
+
 			field.nextElementSibling.nextElementSibling.classList.remove(
 				'icon-error-show',
 			)
@@ -100,7 +101,8 @@ class FormValidator {
 				'icon-error-show',
 			)
 
-			this.validationSchema[field.name] = false
+			this.fields[field.name].isVaild = false
+
 			field.placeholder = ''
 			field.parentElement.previousElementSibling.innerText = message
 			field.parentElement.previousElementSibling.classList.add('error')
@@ -110,14 +112,19 @@ class FormValidator {
 }
 
 const loginForm = document.getElementById('loginForm')
-const fields = ['email', 'password']
-const validateFields = {
-	email: false,
-	password: false,
+const fields = {
+	email: {
+		value: 'email',
+		isVaild: false,
+	},
+	password: {
+		value: 'password',
+		isVaild: false,
+	},
 }
 let API_URL = 'http://localhost:8000'
 
-const validator = new FormValidator(loginForm, fields, validateFields)
+const validator = new FormValidator(loginForm, fields)
 validator.initialize()
 
 if (location.href.indexOf('netlify') != -1) {
@@ -165,3 +172,5 @@ function handleLogin() {
 }
 
 const redirectToRegisterPage = () => (location.href = '/register.html')
+const redirectToForgotPasswordPage = () =>
+	(location.href = '/forget-password.html')
