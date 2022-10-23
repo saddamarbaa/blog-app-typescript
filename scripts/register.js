@@ -1,14 +1,7 @@
 class FormValidator {
-	static validateFields = {
-		name: false,
-		email: false,
-		password: false,
-		'confirm-password': false,
-	}
 	constructor(form, fields) {
 		this.form = form
 		this.fields = fields
-		this.validateFields
 	}
 
 	initialize() {
@@ -21,14 +14,14 @@ class FormValidator {
 
 	handleApiCall() {
 		let isAlVaild = true
-		for (const property in FormValidator.validateFields) {
-			if (!FormValidator.validateFields[property]) {
+		for (const property in this.fields) {
+			if (!this.fields[property]?.isVaild) {
 				isAlVaild = false
 			}
+		}
 
-			if (isAlVaild) {
-				handleSignUp()
-			}
+		if (isAlVaild) {
+			handleSignUp()
 		}
 	}
 
@@ -36,18 +29,17 @@ class FormValidator {
 		let self = this
 		this.form.addEventListener('submit', (e) => {
 			e.preventDefault()
-			self.fields.forEach((field) => {
+			Object.keys(self.fields).forEach((field) => {
 				const input = document.querySelector(`#${field}`)
 				self.validateFields(input)
 			})
 			this.handleApiCall()
-			// console.log('this.validateFields', FormValidator.validateFields)
 		})
 	}
 
 	validateOnEntry() {
 		let self = this
-		this.fields.forEach((field) => {
+		Object.keys(self.fields).forEach((field) => {
 			const input = document.querySelector(`#${field}`)
 			input.addEventListener('input', (event) => {
 				self.validateFields(input)
@@ -105,7 +97,8 @@ class FormValidator {
 		const errorMessage = field.parentElement.querySelector('.error-message')
 
 		if (status === 'success') {
-			FormValidator.validateFields[field.name] = true
+			this.fields[field.name].isVaild = true
+
 			field.nextElementSibling.nextElementSibling.classList.remove(
 				'icon-error-show',
 			)
@@ -126,7 +119,9 @@ class FormValidator {
 			field.nextElementSibling.nextElementSibling.classList.add(
 				'icon-error-show',
 			)
-			FormValidator.validateFields[field.name] = false
+
+			this.fields[field.name].isVaild = false
+
 			field.placeholder = ''
 			field.parentElement.previousElementSibling.innerText = message
 			field.parentElement.previousElementSibling.classList.add('error')
@@ -136,7 +131,25 @@ class FormValidator {
 }
 
 const registerForm = document.getElementById('registerForm')
-const fields = ['name', 'email', 'password', 'confirm-password']
+const fields = {
+	name: {
+		value: 'name',
+		isVaild: false,
+	},
+	email: {
+		value: 'email',
+		isVaild: false,
+	},
+	password: {
+		value: 'password',
+		isVaild: false,
+	},
+	'confirm-password': {
+		value: 'confirm-password',
+		isVaild: false,
+	},
+}
+
 let API_URL = 'http://localhost:8000'
 
 const validator = new FormValidator(registerForm, fields)
