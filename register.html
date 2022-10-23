@@ -18,13 +18,10 @@
 		<!-- Connect to the Font Awesome -->
 		<link
 			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-		/>
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
-			integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+			integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
 			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
 		/>
 
 		<!-- the Main CSS File -->
@@ -33,78 +30,138 @@
 		<!-- login css file  -->
 		<link rel="stylesheet" href="./styles/login.css" />
 
-		<!-- register css file  -->
-		<link rel="stylesheet" href="./styles/register.css" />
 		<!-- load this one directly -->
-		<script src="./js/sessions.js"></script>
+		<script src="./scripts/sessions.js"></script>
 
 		<!-- Main Js file  -->
-		<script src="./js/register.js" defer></script>
+		<script src="./scripts/register.js" defer></script>
 
 		<!-- title -->
 		<title>Sign-up</title>
 	</head>
 	<body>
-		<div class="login">
-			<div class="container">
-				<div class="login-wraper register-wraper">
-					<form
-						id="registerForm"
-						class="login-inner-wraper"
-						name="loginform"
-						autocomplete="of"
-					>
-						<div><h2>Sign-up</h2></div>
-						<div class="user-name control">
-							<label for="fname"></label>
-							<input
-								type="text"
-								id="fname"
-								name="name"
-								placeholder="Name"
-								required
-							/>
-						</div>
-						<div class="user-email control">
-							<label for="email"></label>
-							<input
-								type="email"
-								id="email"
-								name="email"
-								placeholder="Email"
-								required
-							/>
-						</div>
-						<div class="user-password control">
-							<label for="password"></label>
-							<input
-								type="password"
-								placeholder="Password"
-								id="password"
-								name="password"
-								required
-							/>
-						</div>
-						<div class="confirm-password control">
-							<label for="confirm-password"></label>
-							<input
-								type="password"
-								placeholder="Confirm Password"
-								id="confirm-password"
-								name="confirm-password"
-								required
-							/>
+		<main class="container">
+			<form action="#" class="form" id="registerForm" autocomplete="of">
+				<h2 class="title">Create a new account</h2>
+				<div class="input-group">
+					<label for="name" class="label">Name</label>
+					<p class="error-message"></p>
+					<div class="input-control">
+						<i class="fa-solid fa-user"></i>
+						<input
+							type="text"
+							id="name"
+							name="name"
+							placeholder="Name"
+							class="input"
+						/>
+
+						<div class="icon block">
+							<i class="fa-solid fa-circle-check"></i>
 						</div>
 
-						<div class="buttons">
-							<input type="submit" value="Create account" id="create-account" />
-							<p onclick="redirectTLoginPage()">
-								Already have an account? Log in here
-							</p>
+						<div class="icon-error">
+							<i class="fa-solid fa-circle-exclamation"></i>
 						</div>
-					</form>
+					</div>
 				</div>
+
+				<div class="input-group">
+					<label for="email" class="label">Email</label>
+					<p class="error-message"></p>
+					<div class="input-control">
+						<i class="fa-solid fa-envelope"></i>
+						<input
+							type="email"
+							id="email"
+							name="email"
+							placeholder="Email"
+							class="input"
+						/>
+						<div class="icon">
+							<i class="fa-solid fa-circle-check"></i>
+						</div>
+
+						<div class="icon-error">
+							<i class="fa-solid fa-circle-exclamation"></i>
+						</div>
+					</div>
+				</div>
+
+				<div class="input-group">
+					<label for="password" class="label">Password</label>
+					<p class="error-message"></p>
+					<div class="input-control">
+						<i class="fas fa-unlock"></i>
+						<input
+							type="password"
+							placeholder="Password"
+							id="password"
+							name="password"
+							class="input"
+						/>
+						<div class="icon block">
+							<i class="fa-solid fa-circle-check"></i>
+						</div>
+
+						<div class="icon-error">
+							<i class="fa-solid fa-circle-exclamation"></i>
+						</div>
+					</div>
+				</div>
+
+				<div class="input-group">
+					<label for="password_confirmation" class="label"
+						>Confirm Password</label
+					>
+					<p class="error-message"></p>
+					<div class="input-control input-invalid">
+						<i class="fa-solid fa-user"></i>
+						<input
+							id="confirm-password"
+							type="password"
+							placeholder="Confirm Password"
+							id="confirm-password"
+							name="confirm-password"
+							class="input"
+						/>
+
+						<div class="icon block">
+							<i class="fa-solid fa-circle-check"></i>
+						</div>
+
+						<div class="icon-error">
+							<i class="fa-solid fa-circle-exclamation"></i>
+						</div>
+					</div>
+				</div>
+
+				<div class="input-group checkbox-group">
+					<input
+						type="checkbox"
+						id="checkbox"
+						name="checkbox"
+						class="checkbox"
+					/>
+					<label for="checkbox"> I Accept th terms and conditions</label>
+				</div>
+				<div class="buttons">
+					<input
+						type="submit"
+						class="button"
+						value="Sign Up"
+						id="create-account"
+					/>
+					<p onclick="redirectTLoginPage()">
+						<span> Already have an account? </span>
+					</p>
+				</div>
+			</form>
+			<div class="promo">
+				👋 Check out my
+				<a href="https://github.com/saddamarbaa" target="_blank">Github</a> to
+				learn more about how I made this.
 			</div>
-		</div>
+		</main>
 	</body>
 </html>

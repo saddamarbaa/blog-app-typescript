@@ -12,16 +12,16 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+		<!-- open all the links in a new tab -->
+		<!-- <base target="_blank" /> -->
+
 		<!-- Connect to the Font Awesome -->
 		<link
 			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-		/>
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
-			integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+			integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
 			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
 		/>
 
 		<!-- the Main CSS File -->
@@ -30,70 +30,94 @@
 		<!-- login css file  -->
 		<link rel="stylesheet" href="./styles/login.css" />
 
-		<!-- sessions.Js file -->
 		<!-- load this one directly -->
-		<script src="./js/sessions.js"></script>
+		<script src="./scripts/sessions.js"></script>
 
-		<!-- login.Js file -->
-		<script src="./js/login.js" defer></script>
+		<!-- Main Js file  -->
+		<script src="./scripts/login.js" defer></script>
 
 		<!-- title -->
 		<title>Sign In</title>
 	</head>
 	<body>
-		<div class="login">
-			<div class="container">
-				<div class="login-wraper">
-					<form
-						id="loginForm"
-						class="login-inner-wraper"
-						name="loginform"
-						autocomplete="of"
-					>
-						<div><h2>Sign In</h2></div>
-						<div class="user-name user-email">
-							<label for="registered"></label>
-							<input
-								type="text"
-								id="registered"
-								name="registered"
-								value="Successfully Registered"
-								placeholder="Successfully Registered"
-								autocomplete="off"
-								disabled
-							/>
-						</div>
-						<div class="user-name user-email control">
-							<label for="email"></label>
-							<input
-								type="email"
-								id="email"
-								name="email"
-								placeholder="Email"
-								autocomplete="off"
-								required
-							/>
-						</div>
-						<div class="user-password control">
-							<label for="password"></label>
-							<input
-								type="password"
-								placeholder="Password"
-								id="password"
-								name="password"
-								required
-							/>
-						</div>
-						<p class="forgot-password">Forgot password?</p>
-						<div class="buttons">
-							<input type="submit" value="Login" id="login" />
-							<p onclick="redirectToRegisterPage()">
-								Don't have an account yet? Sign up here
-							</p>
-						</div>
-					</form>
+		<main class="container">
+			<form action="#" class="form" id="loginForm" autocomplete="of">
+				<h2 class="title">Sign In</h2>
+
+				<div class="input-group">
+					<label for="registered"></label>
+					<p class="error-message"></p>
+					<div class="input-control registered-control">
+						<input
+							type="text"
+							id="registered"
+							name="registered"
+							value="Successfully Registered"
+							placeholder="Successfully Registered"
+							autocomplete="off"
+							disabled
+							class="input"
+						/>
+					</div>
 				</div>
+				<div class="input-group">
+					<label for="email" class="label">Email</label>
+					<p class="error-message"></p>
+					<div class="input-control">
+						<i class="fa-solid fa-envelope"></i>
+						<input
+							type="email"
+							id="email"
+							name="email"
+							placeholder="Email"
+							class="input"
+						/>
+						<div class="icon">
+							<i class="fa-solid fa-circle-check"></i>
+						</div>
+
+						<div class="icon-error">
+							<i class="fa-solid fa-circle-exclamation"></i>
+						</div>
+					</div>
+				</div>
+
+				<div class="input-group">
+					<label for="password" class="label">Password</label>
+					<p class="error-message"></p>
+					<div class="input-control">
+						<i class="fas fa-unlock"></i>
+						<input
+							type="password"
+							placeholder="Password"
+							id="password"
+							name="password"
+							class="input"
+						/>
+						<div class="icon block">
+							<i class="fa-solid fa-circle-check"></i>
+						</div>
+
+						<div class="icon-error">
+							<i class="fa-solid fa-circle-exclamation"></i>
+						</div>
+					</div>
+				</div>
+
+				<p class="forgot-password">Forgot password?</p>
+
+				<div class="buttons">
+					<input type="submit" class="button" value="Login" id="Login" />
+					<p onclick="redirectToRegisterPage()">
+						<span> Don't have an account yet? Sign up here? </span>
+					</p>
+				</div>
+			</form>
+			<div class="promo">
+				👋 Check out my
+				<a href="https://github.com/saddamarbaa" target="_blank">Github</a> to
+				learn more about how I made this.
 			</div>
-		</div>
+		</main>
 	</body>
 </html>
