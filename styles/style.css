@@ -4,6 +4,9 @@
 	--white: #fff;
 	--lightWhite: #f1f4f8;
 	--red: #f00;
+	--red-300: #ffc2c2;
+	--red-400: #ff9700;
+	--red-100: #ffe6e6;
 	--primary: #666;
 	--drak33Grey: #333;
 	--drak3eGrey: #3e3e3e;
@@ -12,6 +15,8 @@
 	--margin-bottom: 2rem;
 	--deepGreen: #004186;
 	--green-400: #006ce5;
+	--green-600: #1877f2;
+	--green-500: rgba(29, 161, 242, 0.9);
 	--space16: 16px;
 	--space20: 20px;
 	--space25: 25px;
@@ -46,6 +51,14 @@ p {
 
 a#individualPost {
 	text-decoration: none;
+}
+
+textarea:hover,
+textarea:focus,
+textarea:active input:hover,
+input:focus,
+input:active {
+	outline: 0;
 }
 
 /*======  Start The Header Section  ======*/
@@ -277,6 +290,7 @@ a#individualPost {
 	-moz-transition: all 0.25s ease;
 	-ms-transition: all 0.25s ease;
 	-o-transition: all 0.25s ease;
+	display: none;
 }
 
 .page .add-post:hover {
@@ -358,7 +372,7 @@ a#individualPost {
 }
 
 .sign-in-login:hover {
-	background-color: var(--deepGreen);
+	background-color: var(--green-500);
 }
 
 .fa-sign-in-alt {

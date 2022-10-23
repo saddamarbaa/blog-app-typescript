@@ -1,12 +1,22 @@
-const Bearer = 'Bearer ' + localStorage.getItem('token')
+const Bearer = 'Bearer ' + localStorage.getItem('accessToken')
+const isAdmin = localStorage.getItem('isAdmin')
 let API_BASE_URL = 'http://localhost:8000'
+const addNewPostButton = document.querySelector('.add-post')
 
 if (location.href.indexOf('netlify') != -1) {
 	API_BASE_URL = 'https://blog-post-api-sadam.herokuapp.com'
 }
 
+console.log(addNewPostButton.style)
 window.onload = () => {
+	console.log(addNewPostButton, JSON.parse(isAdmin))
 	getPosts()
+
+	if (JSON.parse(isAdmin)) {
+		addNewPostButton.style.display = 'block'
+	} else {
+		addNewPostButton.style.display = 'none'
+	}
 }
 
 const getPosts = () => {
