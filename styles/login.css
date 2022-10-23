@@ -95,8 +95,12 @@ form .input-control.registered-control:active,
 form .input-control.registered-control {
 	border-color: var(--red);
 	background: var(--red);
-	margin-top: -0.5rem;
+	margin-top: -0.7rem;
 	display: none;
+}
+
+form .input-control.registered-control input {
+	background: var(--red);
 }
 
 .form .input-invalid:hover,
@@ -117,10 +121,8 @@ form .input-invalid {
 form .input-control i {
 	color: var(--green-400);
 	font-size: 1.3rem;
-	/* padding-right: 1rem; */
 }
 
-/* form .input-control .icon-error i, */
 form .input-invalid i {
 	color: var(--red);
 }
@@ -156,9 +158,10 @@ form .input {
 	padding: 0.75rem;
 	color: var(--primary);
 	font-weight: bold;
-	background: transparent;
+	background: white;
 	font-size: 0.8rem;
 	cursor: pointer;
+	background: white;
 	/* border-left: 0.8px solid #cbd5e0; */
 }
 
@@ -256,4 +259,10 @@ main.container form p span {
 	cursor: pointer;
 	width: 1rem;
 	/* display: none; */
+}
+
+/* Overwrite */
+#forgotPassword .message {
+	margin-top: -0.8rem;
+	font-size: 1.1rem;
 }
