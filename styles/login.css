@@ -2,66 +2,58 @@
 	--section-background: #f2f7fa;
 }
 
-.login {
-	background-color: var(--section-background);
-	width: 100vw;
-	height: 100vh;
+body {
+	background: var(--section-background);
+	min-height: 100vh;
 	display: grid;
 	justify-content: center;
 	align-content: center;
-	font-size: var(--space20);
-	padding-bottom: var(--space20);
-	overflow: hidden;
-	padding-bottom: var(--space20);
 }
 
-.login .container {
+.hidden {
+	display: none;
+}
+
+.block {
+	display: block;
+}
+
+.container {
 	width: 100vw;
-	max-width: 30rem;
-	padding: 1rem;
+	max-width: 31rem;
+	padding: 3rem 0;
+	margin: auto;
+	margin-top: 3rem;
 }
 
-.login-inner-wraper {
-	padding: var(--space25);
+.container form {
+	width: 100%;
+	padding: 1rem var(--space25);
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	-ms-border-radius: 5px;
 	-o-border-radius: 5px;
-	width: 100%;
 	background: var(--white);
 	box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 }
 
-.login-inner-wraper div:first-child {
-	transition: 0.4s;
-	-webkit-transition: 0.4s;
-	-moz-transition: 0.4s;
-	-ms-transition: 0.4s;
-	-o-transition: 0.4s;
-	padding: 0 10px;
+.container h2.title {
+	margin-bottom: 2rem;
 	text-align: center;
-	color: var(--drak33Grey);
-}
-
-.login-inner-wraper .user-name {
-	margin-top: var(--space20);
-}
-
-.login-inner-wraper input#registered,
-.login-inner-wraper input[type='text'],
-.login-inner-wraper input[type='password'],
-.login-inner-wraper input[type='email'] {
+	padding: 0 0.8rem;
+	text-align: center;
+	color: var(--primary);
 	width: 100%;
-	color: var(--drak33Grey);
-	padding: var(--space16);
 }
 
-.login-inner-wraper input {
-	display: block;
+form .input-control {
+	display: flex;
+	align-items: center;
+	padding: 0 0.8rem;
+	border: 1px solid #cbd5e0;
+	line-height: 1.25;
 	width: 100%;
-	margin-bottom: var(--space20);
-	color: #495057;
 	background-color: #fff;
 	font-weight: 400;
 	transition: 0.4s;
@@ -75,53 +67,193 @@
 	-ms-border-radius: 0.25rem;
 	-o-border-radius: 0.25rem;
 	font-weight: bold;
-	max-height: 3rem;
+	font: inherit;
+	position: relative;
 }
 
-.control input:hover,
-.control input:focus,
-.control input:active {
-	outline: 0 !important;
-	border-color: 1px solid rgb(220, 227, 232);
+form .input-control.registered-control {
+	border-color: var(--red);
+	/* display: none; */
 }
-
-.login-inner-wraper input#registered {
-	background-color: red;
+form .input-control input#registered {
 	color: white;
 	cursor: default;
-	display: none;
 	text-align: center;
+	font-size: 1.1rem;
 }
 
-.login-inner-wraper .buttons {
-	display: grid;
+.form .input-control:hover,
+.form .input-control:focus,
+.form .input-control:active {
+	border-color: var(--green-400);
 }
 
-.login-inner-wraper input[type='submit'],
-.login-inner-wraper input[type='button'],
-.login-inner-wraper input[type='reset'] {
-	background-color: var(--green-400);
-	color: var(--white);
-	padding: 0.8rem;
-	font-size: var(--space20);
-	cursor: pointer;
-	border: inherit;
+form .input-control.registered-control,
+form .input-control.registered-control:hover,
+form .input-control.registered-control:focus,
+form .input-control.registered-control:active,
+form .input-control.registered-control {
+	border-color: var(--red);
+	background: var(--red);
+	margin-top: -0.5rem;
+	display: none;
 }
 
-.login-inner-wraper p {
+.form .input-invalid:hover,
+.form .input-invalid:focus,
+.form .input-invalid:active,
+form .input-invalid {
+	border-color: var(--red);
+	background: var(--red-100);
+}
+
+.form .input-success,
+.form .input-success:hover,
+.form .input-success:focus,
+.form .input-success:active {
+	border-color: var(--green-400);
+}
+
+form .input-control i {
+	color: var(--green-400);
+	font-size: 1.3rem;
+	/* padding-right: 1rem; */
+}
+
+/* form .input-control .icon-error i, */
+form .input-invalid i {
+	color: var(--red);
+}
+
+form .input-control div.icon-error,
+form .input-control div.icon {
+	display: none;
+}
+
+form .input-control div.icon-error-show,
+form .input-control div.icon-success {
+	display: block;
+}
+form .input-control div.icon-success i {
 	color: var(--green-400);
 }
 
-.login-inner-wraper p.forgot-password {
-	margin-bottom: 1rem;
+.container label {
+	display: block;
+	font-weight: bold;
+	font-size: 1rem;
+	margin-bottom: 0.2rem;
+	color: var(--primary);
 	display: none;
 }
 
-.login-inner-wraper .buttons p {
-	text-align: center;
+form .input {
+	appearance: none;
+	height: 100%;
+	border: none;
+	display: block;
+	width: 100%;
+	padding: 0.75rem;
+	color: var(--primary);
+	font-weight: bold;
+	background: transparent;
+	font-size: 0.8rem;
+	cursor: pointer;
+	/* border-left: 0.8px solid #cbd5e0; */
 }
 
-.login-inner-wraper p:hover {
+form .button {
+	background-color: var(--green-400);
+	color: var(--white);
+	border: none;
+	border-radius: 0.25rem;
+	font-size: var(--space20);
+	font-weight: bold;
+	display: block;
+	width: 100%;
+	height: 2.8rem;
+	cursor: pointer;
+	border-color: transparent;
+	transition: 0.4s;
+	-webkit-transition: 0.4s;
+	-moz-transition: 0.4s;
+	-ms-transition: 0.4s;
+	-o-transition: 0.4s;
+	font-size: 1.1rem;
+}
+
+form .button:hover {
+	background: var(--green-500);
+}
+
+.input-group {
+	margin: 1.3rem 0;
+}
+
+.container .promo {
+	font-size: 1rem;
+	max-width: 32rem;
+	padding: 1.1rem;
+	border-radius: 0.25rem;
+	text-align: center;
+}
+.container .promo a {
+	color: var(--green-400);
+}
+
+.container form p {
+	color: var(--primary);
+	text-align: center;
+	margin-top: 1rem;
+}
+
+.container form p.forgot-password,
+main.container form p span {
+	color: var(--green-400);
+}
+
+.container form p.forgot-password {
+	text-align: left;
+	cursor: pointer;
+}
+
+.container form p.forgot-password:hover {
+	text-decoration: underline;
+}
+
+.container form p span:hover {
 	text-decoration: underline;
 	cursor: pointer;
+	color: var(--green-500);
+}
+
+.container form p.forgot-password {
+	margin-top: 2rem;
+	margin: 1rem;
+}
+
+.container .error {
+	color: var(--red-400);
+	text-align: right;
+	padding: 0 0.6rem;
+	font-weight: bold;
+	font-size: 0.9rem;
+}
+
+.checkbox-group label {
+	display: block;
+	margin-top: 0.1rem;
+	color: var(--primary);
+	font-size: 0.8rem;
+}
+
+.checkbox-group {
+	display: flex;
+}
+
+.checkbox-group .checkbox {
+	margin-right: 0.9rem;
+	cursor: pointer;
+	width: 1rem;
+	/* display: none; */
 }
