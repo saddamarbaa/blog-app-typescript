@@ -26,7 +26,9 @@ window.onload = () => {
 		// emailInput.style.textAlign = 'center'
 	}
 	if (registeredEmail) {
-		const newRegisterEmailInput = loginForm.registered
+		const newRegisterEmailInput = document.querySelector(
+			'.input-control.registered-control',
+		)
 		newRegisterEmailInput.style.display = 'block'
 	}
 }
