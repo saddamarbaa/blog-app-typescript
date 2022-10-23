@@ -21,7 +21,7 @@ class FormValidator {
 		}
 
 		if (isAlVaild) {
-			// handleSignUp()
+			handleResetPassword()
 		}
 	}
 
@@ -107,7 +107,7 @@ class FormValidator {
 	}
 }
 
-const registerForm = document.getElementById('resetPassword')
+const resetPasswordForm = document.getElementById('resetPasswordForm')
 const fields = {
 	password: {
 		value: 'password',
@@ -121,23 +121,28 @@ const fields = {
 
 let API_URL = 'http://localhost:8000'
 
-const validator = new FormValidator(registerForm, fields)
+const validator = new FormValidator(resetPasswordForm, fields)
 validator.initialize()
 
 if (location.href.indexOf('netlify') != -1) {
 	API_URL = 'https://blog-post-api-sadam.herokuapp.com'
 }
 
-function handleSignUp() {
+function handleResetPassword() {
+	const queryString = window.location.search
+	const urlParams = new URLSearchParams(queryString)
+	const token = urlParams.get('token')
+	const id = urlParams.get('id')
+	localStorage.removeItem('token')
+	localStorage.removeItem('accessToken')
+	localStorage.removeItem('refreshToken')
+
 	const payload = {
-		name: registerForm.name.value,
-		email: registerForm.email.value,
-		password: registerForm.password.value,
-		confirmPassword: registerForm['confirm-password'].value,
-		acceptTerms: registerForm.checkbox.checked,
+		password: resetPasswordForm.password.value,
+		confirmPassword: resetPasswordForm['confirm-password'].value,
 	}
 
-	fetch(API_URL + '/api/v1/auth/signup', {
+	fetch(API_URL + `/api/v1/auth/reset-password/${id}/${token}`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -149,13 +154,9 @@ function handleSignUp() {
 			return response.json()
 		})
 		.then((response) => {
-			if (
-				response?.success &&
-				response.status >= 200 &&
-				response.status < 300
-			) {
+			if (response?.success && response.status === 200) {
 				alert(response?.message)
-				location.href = `/login.html?existingEmail=${payload.email}&registered=true`
+				location.href = '/login.html'
 			} else {
 				throw new Error(
 					response?.message || 'Something went wrong please try again',
