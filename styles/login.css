@@ -73,8 +73,8 @@ form .input-control {
 
 form .input-control.registered-control {
 	border-color: var(--red);
-	/* display: none; */
 }
+
 form .input-control input#registered {
 	color: white;
 	cursor: default;

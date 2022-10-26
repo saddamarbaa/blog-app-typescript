@@ -1,4 +1,3 @@
-const Bearer = 'Bearer ' + localStorage.getItem('accessToken')
 const isAdmin = localStorage.getItem('isAdmin')
 let API_BASE_URL = 'http://localhost:8000'
 const addNewPostButton = document.querySelector('.add-post')
@@ -7,9 +6,8 @@ if (location.href.indexOf('netlify') != -1) {
 	API_BASE_URL = 'https://blog-post-api-sadam.herokuapp.com'
 }
 
-console.log(addNewPostButton.style)
 window.onload = () => {
-	console.log(addNewPostButton, JSON.parse(isAdmin))
+	// console.log(addNewPostButton, JSON.parse(isAdmin))
 	getPosts()
 
 	if (JSON.parse(isAdmin)) {
@@ -19,14 +17,14 @@ window.onload = () => {
 	}
 }
 
-const getPosts = () => {
+const getPosts = (searchQuery = '') => {
 	buildPosts([], true)
-	fetch(API_BASE_URL + '/api/v1/posts', {
+	fetch(API_BASE_URL + `/api/v1/posts${searchQuery}`, {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json',
 			Accept: 'application/json',
-			Authorization: Bearer,
+			Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
 		},
 	})
 		.then((response) => {
@@ -103,6 +101,29 @@ const buildPosts = (posts, isLoading = false, isApiFail = false) => {
 		    </div>`
 	}
 }
+
+function debounce(callback, timeout = 500) {
+	let timer
+	return (...args) => {
+		if (timer) clearTimeout(timer)
+		timer = setTimeout(() => {
+			callback.apply(this, args)
+		}, timeout)
+	}
+}
+
+function saveInput() {
+	const searchForm = document.getElementById('searchbox-input')
+	const event = document.getElementById('select')
+	const category = event.options[event.selectedIndex].text
+	const searchQuery = `?filterBy=category&category=${category || ''}&search=${
+		searchForm.value || ''
+	}`
+
+	getPosts(searchQuery)
+}
+
+const processChange = debounce(() => saveInput())
 
 const deleteTokenFromLocalStorage = document.getElementById('removeTokenButton')
 
