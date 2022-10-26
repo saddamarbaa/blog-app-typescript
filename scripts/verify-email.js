@@ -1,5 +1,9 @@
 let API_BASE_URL = 'http://localhost:8000'
 
+if (location.href.indexOf('netlify') != -1) {
+	API_BASE_URL = 'https://blog-post-api-sadam.herokuapp.com'
+}
+
 window.onload = () => {
 	const queryString = window.location.search
 	const urlParams = new URLSearchParams(queryString)

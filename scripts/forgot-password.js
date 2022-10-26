@@ -107,6 +107,7 @@ const fields = {
 		isVaild: false,
 	},
 }
+
 let API_URL = 'http://localhost:8000'
 
 const validator = new FormValidator(forgotPassword, fields)

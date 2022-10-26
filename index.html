@@ -64,7 +64,26 @@
 		</span>
 		<!-- Start The Main Section -->
 		<main class="main page__main" id="page__main">
-			<div class="page__main__container" id="blogPostContent"></div>
+			<div class="page__main__wrapper">
+				<form action="#" class="searchbox" id="searchForm" autocomplete="of">
+					<div id="select-box">
+						<select id="select" onchange="saveInput()">
+							<option selected>All</option>
+							<option>Nodejs</option>
+							<option>TypeScript</option>
+						</select>
+					</div>
+					<input
+						type="search"
+						name="search"
+						id="searchbox-input"
+						placeholder="Live search ..."
+						autocomplete="off"
+						onkeyup="processChange()"
+					/>
+				</form>
+				<div class="page__main__container" id="blogPostContent"></div>
+			</div>
 		</main>
 		<!-- Start the Footer Section -->
 		<footer class="footer page__footer">
