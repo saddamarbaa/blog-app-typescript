@@ -25,42 +25,38 @@
 
 		<!-- the CSS File -->
 		<link rel="stylesheet" href="./src/styles/style.css" />
+		<!--  -->
 		<link rel="stylesheet" href="./src/styles/post.css" />
+		<!--  -->
 		<link rel="stylesheet" href="./src/styles/new-post.css" />
 
 		<!-- Js file -->
-		<script src="./dist/scripts/new-post.js" type="module"></script>
+		<script src="./dist/scripts/edit-post.js"  type="module"></script>
 
 		<!--  Start title -->
-		<title>New Post</title>
+		<title>Edit Post</title>
 	</head>
 	<body class="page">
 		<!-- Start The Header Section -->
 		<header class="header page__header">
 			<div class="profile__image"></div>
-			<div class="profile__name">New Post</div>
-			<div class="profile__subtext">Let's add a new blog post!</div>
+			<div class="profile__name">Edit Post</div>
+			<div class="profile__subtext">Let's edit this post!</div>
 		</header>
 
 		<!-- Start The Main Section -->
-		<main class="main page__main newPostForm">
+		<main class="main page__main newPostForm individual">
 			<div class="page__main__container">
 				<div class="nav navigation">
 					<a href="index.html" class="navigation__button">Back</a>
 				</div>
-
 				<div class="form-container">
-					<form
-						id="newPostForm"
-						action=""
-						method="POST"
-						enctype="multipart/form-data"
-					>
+					<form id="editPostForm" method="POST" enctype="multipart/form-data">
 						<div class="post-title-container">
 							<label for="form-post-title"></label>
 							<input
 								type="text"
-								id="form-post-title"
+								id="form-post-title-edit"
 								name="post-title"
 								placeholder="Post Title"
 								required
@@ -69,7 +65,7 @@
 						<div class="post-content-container">
 							<textarea
 								name="post-content"
-								id="form-post-content"
+								id="form-post-content-edit"
 								placeholder="Post Content"
 								required
 							></textarea>
@@ -80,9 +76,8 @@
 							<input
 								type="file"
 								name="post-image"
-								id="form-post-image"
+								id="form-post-image-edit"
 								accept="image/*"
-								required
 							/>
 						</div>
 

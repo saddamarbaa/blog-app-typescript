@@ -1,5 +1,3 @@
-<!-- @format -->
-
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -41,14 +39,13 @@
 		/>
 
 		<!-- the Main CSS File -->
-		<link rel="stylesheet" href="./styles/style.css" />
+		<link rel="stylesheet" href="./src/styles/style.css" />
 
 		<!-- sessions.Js file -->
 		<!-- load this one directly -->
-		<script src="./js/sessions.js"></script>
-
+		<script src="./dist/scripts/sessions.js"></script>
 		<!-- Js file -->
-		<script src="./js/index.js" defer></script>
+		<script src="./dist/scripts/index.js" type="module"></script>
 
 		<!--  Start title -->
 		<title>blog post page</title>
@@ -66,9 +63,26 @@
 		</span>
 		<!-- Start The Main Section -->
 		<main class="main page__main" id="page__main">
-			<div class="page__main__container" id="blogPostContent"></div>
+			<div class="page__main__wrapper">
+				<form action="#" class="searchbox" id="searchForm" autocomplete="of">
+					<div id="select-box">
+						<select id="select">
+							<option selected>All</option>
+							<option>Nodejs</option>
+							<option>TypeScript</option>
+						</select>
+					</div>
+					<input
+						type="search"
+						name="search"
+						id="searchBoxInput"
+						placeholder="Live search ..."
+						autocomplete="off"
+					/>
+				</form>
+				<div class="page__main__container" id="blogPostContent"></div>
+			</div>
 		</main>
-
 		<!-- Start the Footer Section -->
 		<footer class="footer page__footer">
 			<div class="page__footer__container">
@@ -86,19 +100,13 @@
 					<a class="github" href="https://github.com/saddamarbaa">
 						<i class="fab fa-github-square fa-2x"> </i
 					></a>
-					<a
-						class="instagram"
-						href="https://www.instagram.com/saddam.dev/"
-					>
+					<a class="instagram" href="https://www.instagram.com/saddam.dev/">
 						<i class="fab fa-instagram-square fa-2x"> </i
 					></a>
 					<a class="twitter" href="https://twitter.com/ArbaaSaddam/">
 						<i class="fab fa-twitter-square fa-2x"></i>
 					</a>
-					<a
-						class="linkedin"
-						href="https://www.linkedin.com/in/saddamarbaa/"
-					>
+					<a class="linkedin" href="https://www.linkedin.com/in/saddamarbaa/">
 						<i class="fab fa-linkedin-in fa-2x"> </i
 					></a>
 				</div>
