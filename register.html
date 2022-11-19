@@ -25,16 +25,16 @@
 		/>
 
 		<!-- the Main CSS File -->
-		<link rel="stylesheet" href="./styles/style.css" />
+		<link rel="stylesheet" href="./src/styles/style.css" />
 
 		<!-- login css file  -->
-		<link rel="stylesheet" href="./styles/login.css" />
+		<link rel="stylesheet" href="./src/styles/login.css" />
 
 		<!-- load this one directly -->
-		<script src="./scripts/sessions.js"></script>
+		<script src="./dist/scripts/sessions.js"></script>
 
 		<!-- Main Js file  -->
-		<script src="./scripts/register.js" defer></script>
+		<script src="./dist/scripts/register.js" type="module"></script>
 
 		<!-- title -->
 		<title>Sign-up</title>
@@ -152,7 +152,7 @@
 						value="Sign Up"
 						id="create-account"
 					/>
-					<p onclick="redirectTLoginPage()">
+					<p id="redirectTLoginPage">
 						<span> Already have an account? </span>
 					</p>
 				</div>

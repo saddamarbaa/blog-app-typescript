@@ -25,16 +25,16 @@
 		/>
 
 		<!-- the Main CSS File -->
-		<link rel="stylesheet" href="./styles/style.css" />
+		<link rel="stylesheet" href="./src/styles/style.css" />
 
 		<!-- login css file  -->
-		<link rel="stylesheet" href="./styles/login.css" />
+		<link rel="stylesheet" href="./src/styles/login.css" />
 
 		<!-- load this one directly -->
-		<script src="./scripts/sessions.js"></script>
+		<script src="./dist/scripts/sessions.js"></script>
 
 		<!-- Main Js file  -->
-		<script src="./scripts/login.js" defer></script>
+		<script src="./dist/scripts/login.js" type="module"></script>
 
 		<!-- title -->
 		<title>Sign In</title>
@@ -104,13 +104,13 @@
 					</div>
 				</div>
 
-				<p class="forgot-password" onclick="redirectToForgotPasswordPage()">
+				<p class="forgot-password" id="redirectToForgotPasswordPageButton">
 					Forgot password?
 				</p>
 
 				<div class="buttons">
 					<input type="submit" class="button" value="Login" id="Login" />
-					<p onclick="redirectToRegisterPage()">
+					<p id="redirectToRegisterPageButton">
 						<span> Don't have an account yet? Sign up here? </span>
 					</p>
 				</div>

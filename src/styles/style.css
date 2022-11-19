@@ -74,7 +74,7 @@ input:active {
 	justify-content: center;
 	min-height: 19rem;
 	color: var(--white);
-	background: url('../assets/banner.jpeg') no-repeat center center/cover;
+	background: url('/assets/banner.jpeg') no-repeat center center/cover;
 	position: relative;
 }
 
@@ -82,7 +82,7 @@ input:active {
 	width: 9.3rem;
 	height: 9.3rem;
 	background: var(--white);
-	background: url('../assets/profile2.jpg') no-repeat center center/cover;
+	background: url('/assets/profile2.jpg') no-repeat center center/cover;
 	border-radius: var(--space50) !important;
 	-webkit-border-radius: var(--space50) !important;
 	-moz-border-radius: var(--space50) !important;

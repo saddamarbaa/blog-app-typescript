@@ -39,14 +39,13 @@
 		/>
 
 		<!-- the Main CSS File -->
-		<link rel="stylesheet" href="./styles/style.css" />
+		<link rel="stylesheet" href="./src/styles/style.css" />
 
 		<!-- sessions.Js file -->
 		<!-- load this one directly -->
-		<script src="./scripts/sessions.js"></script>
-
+		<script src="./dist/scripts/sessions.js"></script>
 		<!-- Js file -->
-		<script src="./scripts/index.js" defer></script>
+		<script src="./dist/scripts/index.js" type="module"></script>
 
 		<!--  Start title -->
 		<title>blog post page</title>
@@ -67,7 +66,7 @@
 			<div class="page__main__wrapper">
 				<form action="#" class="searchbox" id="searchForm" autocomplete="of">
 					<div id="select-box">
-						<select id="select" onchange="saveInput()">
+						<select id="select">
 							<option selected>All</option>
 							<option>Nodejs</option>
 							<option>TypeScript</option>
@@ -76,10 +75,9 @@
 					<input
 						type="search"
 						name="search"
-						id="searchbox-input"
+						id="searchBoxInput"
 						placeholder="Live search ..."
 						autocomplete="off"
-						onkeyup="processChange()"
 					/>
 				</form>
 				<div class="page__main__container" id="blogPostContent"></div>

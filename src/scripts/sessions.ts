@@ -14,7 +14,7 @@ const existingEmail = urlParams.get('existingEmail')
 const registeredEmail = urlParams.get('registered')
 
 window.onload = () => {
-	const loginForm = document.getElementById('loginForm')
+	const loginForm = document.getElementById('loginForm') as HTMLFormElement
 	const emailInput = loginForm?.email
 
 	if (existingEmail) {
@@ -28,7 +28,7 @@ window.onload = () => {
 	if (registeredEmail) {
 		const newRegisterEmailInput = document.querySelector(
 			'.input-control.registered-control',
-		)
+		) as HTMLInputElement
 		newRegisterEmailInput.style.display = 'block'
 	}
 }
@@ -59,6 +59,7 @@ const checkIfLoggedIn = () => {
 const LogOut = () => {
 	localStorage.removeItem('refreshToken')
 	localStorage.removeItem('accessToken')
+	localStorage.removeItem('isAdmin')
 	location.href = 'login.html'
 }
 
