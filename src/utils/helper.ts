@@ -1,9 +1,19 @@
 import { ApiResponse, FieldT, ValidatorInterface } from '../interfaces/index.js'
 
-const Bearer = 'Bearer ' + localStorage.getItem('accessToken')
 export let API_BASE_URL = 'http://localhost:8000'
 
-if (location.href.indexOf('netlify') != -1) {
+let Bearer = ''
+if (
+	typeof window !== 'undefined' &&
+	window.location.href.indexOf('netlify') != -1
+) {
+	Bearer = 'Bearer ' + localStorage?.getItem('accessToken') || ''
+}
+
+if (
+	typeof window !== 'undefined' &&
+	window.location.href.indexOf('netlify') != -1
+) {
 	API_BASE_URL = 'https://blog-post-api-sadam.herokuapp.com'
 }
 
