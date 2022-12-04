@@ -1,3 +1,6 @@
+import { sendFetchHttpRequest } from '../utils/helper.js'
+import { ApiResponse } from '../interfaces/index.js'
+
 /**
  *  in login page
  *  Check if token is available
@@ -12,6 +15,9 @@ const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 const existingEmail = urlParams.get('existingEmail')
 const registeredEmail = urlParams.get('registered')
+const logoutButton = document.getElementById(
+	'removeTokenButton',
+) as HTMLSpanElement
 
 window.onload = () => {
 	const loginForm = document.getElementById('loginForm') as HTMLFormElement
@@ -56,11 +62,31 @@ const checkIfLoggedIn = () => {
 	}
 }
 
-const LogOut = () => {
+const clearLocalStorage = () => {
 	localStorage.removeItem('refreshToken')
 	localStorage.removeItem('accessToken')
 	localStorage.removeItem('isAdmin')
 	location.href = 'login.html'
 }
+
+async function logoutHandler() {
+	const payload = {
+		refreshToken: localStorage.getItem('refreshToken') || '',
+	}
+
+	try {
+		await sendFetchHttpRequest<ApiResponse<{}>>(
+			'/api/v1/auth/logout',
+			'POST',
+			payload,
+		)
+		clearLocalStorage()
+	} catch (error: unknown) {
+		console.log('Fetch Error :-S', error)
+		clearLocalStorage()
+	}
+}
+
+logoutButton.addEventListener('click', logoutHandler)
 
 checkIfLoggedIn()
