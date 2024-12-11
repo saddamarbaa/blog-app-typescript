@@ -42,23 +42,23 @@ const buildPost = (
 		const {
 			_id: id,
 			title,
-			content,
-			postImage,
+			description,
+			photoUrl,
 			createdAt: postDate,
 			updatedAt,
 		} = post
-		let image = `${API_BASE_URL}${postImage}`
+		// let image = `${API_BASE_URL}${postImage}`
 
 		const pageHeader = document.querySelector('.page__header') as any
 
 		if (!isLoading && !isApiFail) {
-			pageHeader.style.background = `url('${image}') no-repeat center/contain`
+			pageHeader.style.background = `url('${photoUrl}') no-repeat center/contain`
 			document.querySelector('.post--text-empty  >p')!.innerHTML = ''
 			document.querySelector(
 				'#individual__post--date',
 			)!.innerHTML = `Published on: ${postDate?.split('T')[0]}`
 			document.querySelector('#individual__post--content >p')!.innerHTML =
-				content
+				description
 			document.querySelector('#individual__post--title')!.innerHTML = title
 
 			if (adminRole && adminRole.toUpperCase() === 'ADMIN') {

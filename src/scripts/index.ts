@@ -1,6 +1,10 @@
 import { ApiResponse } from '../interfaces/ApiResponseT.js'
 import { PostT } from '../interfaces/PostT.js'
-import { API_BASE_URL, sendXMLHttpRequest } from '../utils/helper.js'
+import {
+	API_BASE_URL,
+	sendFetchHttpRequest,
+	sendXMLHttpRequest,
+} from '../utils/helper.js'
 
 const searchInput = document.getElementById(
 	'searchBoxInput',
@@ -9,18 +13,85 @@ const searchInput = document.getElementById(
 const selectBox = document.getElementById('select') as HTMLSelectElement
 const adminRole = localStorage.getItem('isAdmin') as string
 
+// console.log(userNameDiv?.innerHTML = )
 const addNewPostButton = document.querySelector(
 	'.add-post',
 ) as HTMLAnchorElement
 
 window.onload = () => {
 	// console.log(addNewPostButton, JSON.parse(isAdmin))
+	updateUserProfile()
 	getPosts()
 
 	if (adminRole && adminRole.toUpperCase() === 'ADMIN') {
 		addNewPostButton.style.display = 'block'
 	} else {
 		addNewPostButton.style.display = 'none'
+	}
+}
+
+export const updateUserProfile = async () => {
+	try {
+		const profileResponse = await sendFetchHttpRequest<
+			ApiResponse<{
+				user: {
+					role: string
+					firstName: string
+					lastName: string
+					profileUrl: string
+				}
+			}>
+		>(
+			'/api/v1/auth/profile',
+			'GET',
+			null,
+			{
+				Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
+			},
+			false,
+		)
+
+		if (
+			profileResponse?.success &&
+			profileResponse.status === 200 &&
+			profileResponse?.data?.user
+		) {
+			const user = profileResponse?.data?.user
+
+			if (user?.role === 'admin') {
+				localStorage.setItem('isAdmin', user?.role)
+			}
+
+			// Update the user name
+			if (user?.firstName && user?.lastName) {
+				const userName = `${user?.firstName} ${user?.lastName}`
+				const userNameDiv = document.querySelector(
+					'.profile__name',
+				) as HTMLDivElement
+				userNameDiv.innerHTML = userName
+			}
+
+			// Update the profile image if available
+			const profileImageDiv = document.querySelector(
+				'.profile__image',
+			) as HTMLElement
+
+			if (profileImageDiv) {
+				// Set profile image styles dynamically
+				profileImageDiv.style.width = '9.3rem'
+				profileImageDiv.style.height = '9.3rem'
+				profileImageDiv.style.background = 'var(--white)'
+				profileImageDiv.style.backgroundImage = user?.profileUrl
+					? `url(${user?.profileUrl})`
+					: `url('/assets/profile2.jpg')` // Default image if no profile image is provided
+				profileImageDiv.style.backgroundRepeat = 'no-repeat'
+				profileImageDiv.style.backgroundPosition = 'center'
+				profileImageDiv.style.backgroundSize = 'cover'
+				profileImageDiv.style.borderRadius = 'var(--space50)' // Border radius applied
+			}
+		}
+	} catch (error) {
+		console.error('Error updating user profile:', error)
 	}
 }
 
@@ -47,8 +118,8 @@ const buildPosts = (posts: PostT[], isLoading = false, isApiFail = false) => {
 	if (posts.length > 0 && !isLoading && !isApiFail) {
 		blogPostContent.innerHTML = ''
 		posts.forEach((post) => {
-			const { _id: id, title, content, postImage, createdAt } = post
-			let image = `${API_BASE_URL}${postImage}`
+			const { _id: id, title, description, photoUrl, createdAt } = post
+			let image = photoUrl
 			const postDate = createdAt
 			const postlink = `/post.html?id=${id}`
 			blogPostContent.innerHTML += `
@@ -64,7 +135,7 @@ const buildPosts = (posts: PostT[], isLoading = false, isApiFail = false) => {
 						<div class="post--title">${title}</div>
 						<!-- blog_post_content -->
 						<div class="post--text">
-								<p> ${content}</p>
+								<p> ${description}</p>
 						</div>
 							<span
 								class="post--text--readMore"

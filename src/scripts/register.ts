@@ -9,11 +9,12 @@ validator.initialize()
 
 async function handleSignUp() {
 	const payload = {
-		name: (document.getElementById('name') as HTMLInputElement).value,
+		firstName: (document.getElementById('name') as HTMLInputElement).value,
 		email: registerForm.email.value,
 		password: registerForm.password.value,
 		confirmPassword: registerForm['confirm-password'].value,
 		acceptTerms: registerForm.checkbox.checked,
+		lastName: 'Doe',
 	}
 
 	try {

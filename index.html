@@ -46,7 +46,7 @@
 		<script src="./dist/scripts/sessions.js" type="module"></script>
 		<!-- Js file -->
 		<script src="./dist/scripts/index.js" type="module"></script>
-
+     <script src="./dist/scripts/login.js" type="module"></script>
 		<!--  Start title -->
 		<title>blog app</title>
 	</head>
@@ -54,13 +54,16 @@
 		<!-- Start The Header Section -->
 		<header class="header page__header">
 			<div class="profile__image"></div>
-			<div class="profile__name">Saddam Arbaa</div>
+			<div class="profile__name">
+				<!-- Saddam Arbaa -->
+			</div>
 			<div class="profile__subtext">Welcome to my blog!</div>
 		</header>
 		<span class="sign-in-login" id="removeTokenButton">
 			<i class="fas fa-sign-in-alt"></i>
 			Sign Out
 		</span>
+
 		<!-- Start The Main Section -->
 		<main class="main page__main" id="page__main">
 			<div class="page__main__wrapper">
@@ -68,8 +71,11 @@
 					<div id="select-box">
 						<select id="select">
 							<option selected>All</option>
+							<option>Coding</option>
 							<option>Nodejs</option>
 							<option>TypeScript</option>
+							<option>Reactjs</option>
+							<option>Nextjs</option>
 						</select>
 					</div>
 					<input

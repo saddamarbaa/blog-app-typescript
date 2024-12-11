@@ -47,7 +47,7 @@ const handleUpdatePost = async () => {
 		formData.append('postImage', fileInputElement.files[0])
 	}
 	formData.append('title', title.value || '')
-	formData.append('content', content.value || '')
+	formData.append('description', content.value || '')
 
 	try {
 		await sendFetchHttpRequest(

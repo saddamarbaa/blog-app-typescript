@@ -78,7 +78,7 @@ input:active {
 	position: relative;
 }
 
-.page__header .profile__image {
+/* .page__header .profile__image {
 	width: 9.3rem;
 	height: 9.3rem;
 	background: var(--white);
@@ -89,7 +89,7 @@ input:active {
 	-ms-border-radius: var(--space50) !important;
 	-o-border-radius: var(--space50) !important;
 	-webkit-border-radius: var(--space50);
-}
+} */
 
 .page__header .profile__name {
 	font-size: 2.3em;

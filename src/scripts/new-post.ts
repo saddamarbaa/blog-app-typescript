@@ -23,7 +23,7 @@ newPostForm.addEventListener('submit', (event) => {
 		formData.append('postImage', fileInputElement?.files[0])
 	}
 	formData.append('title', title)
-	formData.append('content', content)
+	formData.append('description', content)
 	handleCreatePost(formData)
 })
 

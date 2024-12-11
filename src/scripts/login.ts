@@ -16,24 +16,22 @@ async function handleLogin() {
 	try {
 		const response = await sendFetchHttpRequest<
 			ApiResponse<{
-				user: {
-					refreshToken: string
-					accessToken: string
-					role: string
-				}
+				refreshToken: string
+				accessToken: string
+				role: string
 			}>
 		>('/api/v1/auth/login', 'POST', payload)
-
 		if (
 			response?.success &&
 			response.status === 200 &&
-			response?.data?.user?.refreshToken &&
-			response?.data?.user?.accessToken
+			response?.data?.refreshToken &&
+			response?.data?.accessToken
 		) {
-			localStorage.setItem('refreshToken', response?.data?.user?.refreshToken)
-			localStorage.setItem('accessToken', response?.data?.user?.accessToken)
-			localStorage.setItem('isAdmin', response?.data?.user?.role)
-			location.href = '/'
+			localStorage.setItem('refreshToken', response?.data?.refreshToken)
+			localStorage.setItem('accessToken', response?.data?.accessToken)
+
+			// Redirect to homepage
+			window.location.href = '/'
 		}
 	} catch (error: unknown) {
 		console.log('Fetch Error :-S', error)

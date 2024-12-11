@@ -1,7 +1,7 @@
 export interface PostT {
 	title: string
-	content: string
-	postImage: string
+	description: string
+	photoUrl: string
 	_id: string
 	createdAt?: string
 	updatedAt?: string
