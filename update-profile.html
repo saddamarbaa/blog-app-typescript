@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Required meta tag -->
+		<meta charset="UTF-8" />
+		<meta name="description" content="Blog Layout" />
+		<meta name="keywords" content="news,  Blog Post" />
+		<meta name="author" content="Saddam Arbaa" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+		<!-- First Mobile Viewport  -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<!-- Connect to the Font Awesome -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+			integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+
+		<!-- the Main CSS File -->
+		<link rel="stylesheet" href="./src/styles/style.css" />
+
+		<!-- login css file  -->
+		<link rel="stylesheet" href="./src/styles/login.css" />
+
+		<link rel="stylesheet" href="./src/styles/update-profile.css" />
+
+		<!-- load this one directly -->
+		<!-- <script src="./scripts/sessions.js"></script> -->
+
+		<!-- Js file -->
+		<script src="./dist/scripts/update-profile.js" type="module"></script>
+
+		<!-- title -->
+		<title>Update Profile</title>
+	</head>
+	<body>
+		<div class="container">
+			<h1>Update Profile</h1>
+			<form id="updateProfileForm" enctype="multipart/form-data">
+				<div class="form-group">
+					<label for="firstName">First Name:</label>
+					<input
+						type="text"
+						id="firstName"
+						name="firstName"
+						placeholder="Enter your first name"
+					/>
+				</div>
+
+				<div class="form-group">
+					<label for="lastName">Last Name:</label>
+					<input
+						type="text"
+						id="lastName"
+						name="lastName"
+						placeholder="Enter your last name"
+					/>
+				</div>
+
+				<div class="form-group">
+					<label for="email">Email:</label>
+					<input
+						type="email"
+						id="email"
+						name="email"
+						placeholder="Enter your email"
+					/>
+				</div>
+
+				<div class="form-group">
+					<label for="bio">Bio:</label>
+					<textarea
+						id="bio"
+						name="bio"
+						placeholder="Tell us about yourself"
+						rows="4"
+					></textarea>
+				</div>
+
+				<!-- Profile Picture Section -->
+				<h2>Profile Picture</h2>
+
+				<!-- File upload input -->
+				<div class="form-group">
+					<label for="profileImageUpload">Upload Profile Picture:</label>
+					<input
+						type="file"
+						id="profileImageUpload"
+						name="profileImageUpload"
+						accept="image/*"
+					/>
+				</div>
+
+				<!-- URL input -->
+				<div class="form-group">
+					<label for="profileUrl">Or Enter Profile Picture URL:</label>
+					<input
+						type="url"
+						id="profileUrl"
+						name="profileUrl"
+						placeholder="Enter image URL"
+					/>
+				</div>
+
+				<div class="button-group">
+					<button
+						type="submit"
+						class="btn btn-primary"
+						id="updateProfileButton"
+					>
+						Update Profile
+					</button>
+					<button
+						type="button"
+						class="btn btn-secondary"
+						onclick="window.location.href='index.html'"
+					>
+						Back to Homepage
+					</button>
+					<button type="button" class="btn btn-danger" id="deleteProfile">
+						Delete Profile
+					</button>
+				</div>
+			</form>
+		</div>
+
+		<div id="deleteProfileModal" class="modal">
+			<div class="modal-content">
+				<span id="closeModal" class="close">&times;</span>
+				<h3>Are you sure you want to delete your profile?</h3>
+				<p>This action is irreversible!</p>
+				<button id="confirmDeleteProfile" class="btn-danger">
+					Yes, Delete
+				</button>
+				<button id="cancelDeleteProfile" class="btn-cancel">Cancel</button>
+			</div>
+		</div>
+	</body>
+</html>

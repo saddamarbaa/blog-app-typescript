@@ -1,0 +1,202 @@
+.container {
+	max-width: 700px;
+	margin: 50px auto;
+	padding: 20px;
+	background-color: #fff;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+	text-align: center;
+	margin-bottom: 30px;
+	font-size: 24px;
+	color: #4a90e2;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.form-group {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.form-group label {
+	width: 30%;
+	font-weight: bold;
+	margin-right: 10px;
+}
+
+.form-group input,
+.form-group textarea {
+	width: 65%;
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	font-size: 16px;
+}
+
+.form-group textarea {
+	resize: vertical;
+}
+
+button {
+	padding: 15px;
+	font-size: 16px;
+	background-color: #4a90e2;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+button:hover {
+	background-color: #357abd;
+}
+
+input:focus,
+textarea:focus {
+	border-color: #4a90e2;
+	outline: none;
+}
+
+@media (max-width: 768px) {
+	.container {
+		margin: 20px;
+		padding: 15px;
+	}
+
+	h1 {
+		font-size: 20px;
+	}
+
+	.form-group {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.form-group label {
+		width: 100%;
+		margin-bottom: 5px;
+	}
+
+	.form-group input,
+	.form-group textarea {
+		width: 100%;
+	}
+}
+
+.container label {
+	display: block;
+}
+
+/* Button styles */
+.button-group {
+	display: flex;
+	justify-content: space-between;
+	gap: 10px;
+	margin-top: 20px;
+}
+
+.btn {
+	padding: 10px 20px;
+	font-size: 16px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+	background-color: #4a90e2;
+	color: white;
+}
+
+.btn-primary:hover {
+	background-color: #357abd;
+}
+
+.btn-secondary {
+	background-color: #6c757d;
+	color: white;
+}
+
+.btn-secondary:hover {
+	background-color: #5a6268;
+}
+
+.btn-danger {
+	background-color: #dc3545;
+	color: white;
+}
+
+.btn-danger:hover {
+	background-color: #c82333;
+}
+
+/* Modal styling */
+/* The Modal (background) */
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+	background-color: #fff;
+	margin: 15% auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 50%;
+	max-width: 650px;
+	border-radius: 5px;
+	text-align: center;
+}
+
+/* Close Button */
+.close {
+	color: #aaa;
+	font-size: 28px;
+	font-weight: bold;
+	position: absolute;
+	top: 5px;
+	right: 15px;
+}
+
+.close:hover,
+.close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+button {
+	margin: 15px;
+	padding: 10px 20px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.btn-danger {
+	background-color: #f44336; /* Red */
+	color: white;
+	border: none;
+}
+
+.btn-cancel {
+	background-color: #f1f1f1; /* Light grey */
+	color: black;
+	border: none;
+}

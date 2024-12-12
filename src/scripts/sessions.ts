@@ -1,4 +1,4 @@
-import { sendFetchHttpRequest } from '../utils/helper.js'
+import { sendFetchHttpRequest, clearLocalStorage } from '../utils/helper.js'
 import { ApiResponse } from '../interfaces/index.js'
 
 /**
@@ -60,13 +60,6 @@ const checkIfLoggedIn = () => {
 			location.href = '/login.html'
 		}
 	}
-}
-
-const clearLocalStorage = () => {
-	localStorage.removeItem('refreshToken')
-	localStorage.removeItem('accessToken')
-	localStorage.removeItem('isAdmin')
-	location.href = 'login.html'
 }
 
 async function logoutHandler() {
