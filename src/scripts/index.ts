@@ -1,5 +1,6 @@
 import { ApiResponse } from '../interfaces/ApiResponseT.js'
 import { PostT } from '../interfaces/PostT.js'
+import { IUser } from '../interfaces/User.js'
 import {
 	API_BASE_URL,
 	sendFetchHttpRequest,
@@ -34,12 +35,7 @@ export const updateUserProfile = async () => {
 	try {
 		const profileResponse = await sendFetchHttpRequest<
 			ApiResponse<{
-				user: {
-					role: string
-					firstName: string
-					lastName: string
-					profileUrl: string
-				}
+				user: IUser
 			}>
 		>(
 			'/api/v1/auth/profile',
@@ -71,6 +67,8 @@ export const updateUserProfile = async () => {
 				userNameDiv.innerHTML = userName
 			}
 
+			localStorage.setItem('userId', user._id)
+			
 			// Update the profile image if available
 			const profileImageDiv = document.querySelector(
 				'.profile__image',
@@ -88,6 +86,7 @@ export const updateUserProfile = async () => {
 				profileImageDiv.style.backgroundPosition = 'center'
 				profileImageDiv.style.backgroundSize = 'cover'
 				profileImageDiv.style.borderRadius = 'var(--space50)' // Border radius applied
+				profileImageDiv.style.cursor = 'pointer'
 			}
 		}
 	} catch (error) {

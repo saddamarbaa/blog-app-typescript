@@ -287,3 +287,11 @@ export class FormValidator implements ValidatorInterface {
 		}
 	}
 }
+
+
+export const clearLocalStorage = () => {
+	localStorage.removeItem('refreshToken')
+	localStorage.removeItem('accessToken')
+	localStorage.removeItem('isAdmin')
+	location.href = 'login.html'
+}
